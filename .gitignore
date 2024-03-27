@@ -1,0 +1,8 @@
+local-snaps/*
+*-signed-*.json
+*-dangerous-*.json
+*.snap-list
+*.model
+*.model.build
+*.img
+*.tar.gz
