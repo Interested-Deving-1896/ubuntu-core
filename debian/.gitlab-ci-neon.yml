@@ -1,0 +1,27 @@
+# ref: https://docs.gitlab.com/ee/ci/yaml/#includeremote
+include:
+  - remote: 'https://gitlab.com/lucyllewy/snapcraft-multiarch-gitlab-ci/-/raw/main/snapcraft.yml'
+
+stages:
+  - prepare_helper_image
+  - snapcraft
+  - amd64_build
+
+
+prepare:
+  stage: prepare_helper_image
+    - helper_image_flavor = "ubuntu"
+  script:
+    - add-apt-repository ppa:carlos-demaine/snapcraft-gitab
+    - apt update && apt dist-upgrade
+
+build:
+  stage: snapcraft
+  image: docker.io/diddledani/snapcraft:core22
+  script:
+    - git clone https://invent.kde.org/neon/snap-packaging/kde-qt6-snap.git
+    - snapcraft --destructive-mode 
+
+stage: amd64_build
+  amd64:
+    extends: [ .snapcraft, .amd64 ]
