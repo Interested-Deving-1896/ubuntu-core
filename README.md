@@ -22,6 +22,8 @@ Also, no build can occur if you're not authenticated in your Ubuntu One account 
 
 ### dangerous vs signed
 
+Whatever image variant you build, despite what the name seems to imply, some signature will occur. So they both require a valid key as described in the previous section.
+
 The main difference between the dangerous and the signed images is the amount of freedom you get as to their content. The signed image will contain only the snaps listed in `kde-neon-core-amd64.json`. The dangerous image allows you to inject extra snaps or override some of the snaps of the list with locally built one.
 
 As a developer, `make dangerous` is probably what you will want to use most of the time. To inject or override snaps, simply drop your own snaps in the `local-snaps` directory. Any snap in this directory will be injected in the dangerous image.
