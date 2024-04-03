@@ -6,7 +6,7 @@ find_ovmf_bin() {
     for f in \
         "/usr/share/OVMF/OVMF_CODE.fd" \
         "/usr/share/ovmf/x64/OVMF_CODE.fd" \
-        "/usr/share/qemu/ovmf-x86_64-code.binn" \
+        "/usr/share/qemu/ovmf-x86_64-code.bin" \
     ; do
         if [ -f "$f" ]; then
             echo $f
