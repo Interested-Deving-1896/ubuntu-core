@@ -12,6 +12,6 @@ JQ_SCRIPT="
 cat $INPUT | jq "$JQ_SCRIPT" > $OUTPUT
 
 if [ $GRADE = "dangerous" ]; then
-  ls ./local-snaps/*.snap >> $OUTPUT
+  find ./local-snaps -name '*.snap' >> $OUTPUT
 fi
 
