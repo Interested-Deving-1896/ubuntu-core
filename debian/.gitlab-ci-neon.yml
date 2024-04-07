@@ -4,7 +4,7 @@ include:
 
 default:
   tags:
-    - Snap
+    - snap
 
 stages:
   - prepare_helper_image
