@@ -21,5 +21,6 @@ container:
     #- apt install jq ubuntu-image
     - git clone https://invent.kde.org/neon/ubuntu-core.git
     - cd ubuntu-core
-    - make dangerous
+    #- make dangerous
+    snapcraft
   
