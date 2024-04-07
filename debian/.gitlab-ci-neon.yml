@@ -13,9 +13,9 @@ stages:
 prepare:
   stage: prepare_helper_image
   script:
-    - apt update && apt -y dist-upgrade && apt -y install software-properties-common
-    - add-apt-repository ppa:carlos-demaine/snapcraft-gitab
-    - apt update && apt -y dist-upgrade && apt -y install crun
+#    - apt update && apt -y dist-upgrade && apt -y install software-properties-common
+#    - add-apt-repository ppa:carlos-demaine/snapcraft-gitab
+#    - apt update && apt -y dist-upgrade && apt -y install crun
 
 container: 
   stage: snapcraft
