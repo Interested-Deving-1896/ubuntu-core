@@ -22,5 +22,5 @@ container:
     - git clone https://invent.kde.org/neon/ubuntu-core.git
     - cd ubuntu-core
     #- make dangerous
-    snapcraft
+    - snapcraft
   
