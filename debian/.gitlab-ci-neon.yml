@@ -18,7 +18,7 @@ container:
   stage: snapcraft
   image: docker.io/diddledani/snapcraft:core22
   script:
-    - apt install jq ubuntu-image
+    #- apt install jq ubuntu-image
     - git clone https://invent.kde.org/neon/snap-packaging/kde-qt6-snap.git
     - cd ubuntu-core
     - make dangerous
