@@ -4,7 +4,8 @@ include:
 
 default:
   tags:
-    - snap
+    - Linux
+    - Snap
 
 stages:
   - prepare_helper_image
