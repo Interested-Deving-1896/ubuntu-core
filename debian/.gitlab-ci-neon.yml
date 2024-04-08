@@ -5,7 +5,8 @@ include:
 default:
   tags:
     - Snap
-  image: docker.io/diddledani/snapcraft:core22
+  image: 
+    name: "docker.io/diddledani/snapcraft:core22"
 
 stages:
   - prepare_helper_image
