@@ -1,20 +1,15 @@
-# ref: https://docs.gitlab.com/ee/ci/yaml/#includeremote
 include:
   - remote: 'https://gitlab.com/lucyllewy/snapcraft-multiarch-gitlab-ci/-/raw/main/snapcraft.yml'
 
 default:
   tags:
     - Snap
-  image: 
-    name: invent-registry.kde.org/sysadmin/ci-images/snap-builder:latest
 
-stages:
-  - snapcraft
-
-container: 
-  stage: snapcraft
-  script:
-    - git clone https://invent.kde.org/neon/ubuntu-core.git
-    - cd ubuntu-core
-    - make dangerous
+snapcraft:
+    stage: deploy
+    image: invent-registry.kde.org/sysadmin/ci-images/snap-builder:latest
+    script:
+      - git clone https://invent.kde.org/neon/ubuntu-core.git
+      - cd ubuntu-core
+      - make dangerous
   
