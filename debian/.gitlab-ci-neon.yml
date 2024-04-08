@@ -6,7 +6,6 @@ default:
     - Snap
 
 snapcraft:
-    stage: deploy
     image: invent-registry.kde.org/sysadmin/ci-images/snap-builder:latest
     script:
       - git clone https://invent.kde.org/neon/ubuntu-core.git
