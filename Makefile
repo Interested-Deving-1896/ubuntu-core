@@ -16,12 +16,12 @@ kde-neon-core-signed-amd64.snap-list: kde-neon-core-amd64.json
 kde-neon-core-dangerous-amd64.snap-list: kde-neon-core-amd64.json
 	./create-snap-list.sh dangerous $< $@
 
-%.model: %.json
-	snap sign -k kde-neon-core-image-key $< > $@
+#%.model: %.json
+#	snap sign -k kde-neon-core-image-key $< > $@
 
 %.img: %.model %.snap-list
 	$(eval SNAPS = $(shell cat $(basename $@).snap-list))
-	ubuntu-image snap --output-dir $<.build --image-size 30G \
+	UBUNTU_STORE_AUTH_DATA_FILENAME=./kde-neon-core-image-key ubuntu-image snap --output-dir $<.build --image-size 30G \
 	  $(foreach snap,$(SNAPS),--snap $(snap)) $<
 	mv $<.build/pc.img $@
 
