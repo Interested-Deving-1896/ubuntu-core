@@ -1,18 +1,8 @@
-#include:
-#  - remote: 'https://gitlab.com/lucyllewy/snapcraft-multiarch-gitlab-ci/-/raw/main/snapcraft.yml'
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: CC0-1.0
+
 include:
   - project: sysadmin/ci-utilities
     file:
-      - /gitlab-templates/linux.yml
-
-default:
-  tags:
-    - Snap
-
-snapcraft:
-    image: invent-registry.kde.org/sysadmin/ci-images/snap-builder:latest
-    script:
-      - git clone https://invent.kde.org/neon/ubuntu-core.git
-      - cd ubuntu-core
-      - make dangerous
-  
+      - /gitlab-templates/snap-image-dangerous.yml
+#      - /gitlab-templates/snap-image-signed.yml
