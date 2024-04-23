@@ -26,7 +26,9 @@ OVMF_BIN=`find_ovmf_bin`
 echo "If you need to access local-snaps from the guest run: mount -t 9p host_share /mnt"
 qemu-system-x86_64 -smp 2 -m 2048 -machine accel=kvm \
       -display gtk,gl=on \
-      -net nic,model=virtio -net user,hostfwd=tcp::8022-:22 \
+      -device virtio-vga-gl \
+      -net nic,model=virtio \
+      -net user,hostfwd=tcp::8022-:22 \
       -drive file=$OVMF_BIN,if=pflash,format=raw,unit=0,readonly=on \
       -drive file=$IMAGE,cache=none,format=raw,id=main,if=none \
       -device virtio-blk-pci,drive=main,bootindex=1 \
