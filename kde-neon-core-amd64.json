@@ -127,11 +127,10 @@
             "id": "XpR9oTQLF33NG8XcTC6pqKqx19OMF32p"
         },
         {
-            "name": "kcalc",
+            "name": "kf6-core22",
             "default-channel": "latest/stable",
             "type": "app",
-            "id": "yUnRIACvPcaHjEasN7enV9PYXgrXVdML",
-            "presence": "optional"
+            "id": "DlAIkaMJ1XMsnQRKcn0EjE2nc1S37X4r"
         },
         {
             "name": "loupe",
