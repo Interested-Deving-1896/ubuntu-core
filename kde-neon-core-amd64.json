@@ -121,12 +121,6 @@
             "id": "xODwiAdjx9KGChvI1z9Xx2JWJE7oLFF6"
         },
         {
-            "name": "kf5-5-111-qt-5-15-11-core22",
-            "default-channel": "latest/stable",
-            "type": "app",
-            "id": "XpR9oTQLF33NG8XcTC6pqKqx19OMF32p"
-        },
-        {
             "name": "kf6-core22",
             "default-channel": "latest/stable",
             "type": "app",
