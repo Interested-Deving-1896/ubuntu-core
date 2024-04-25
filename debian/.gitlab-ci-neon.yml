@@ -1,7 +1,5 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: CC0-1.0
-before_script:
-  - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
 
 include:
   - project: sysadmin/ci-utilities
@@ -9,5 +7,8 @@ include:
       - /gitlab-templates/snap-image-dangerous.yml
 #      - /gitlab-templates/snap-image-signed.yml
 
-after_script:
-  - rm -rf ~/.snap/gnupg
+default:
+  before_script:
+    - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
+  after_script:
+    - rm -rf ~/.snap/gnupg
