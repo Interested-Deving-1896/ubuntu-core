@@ -10,7 +10,7 @@ snap_image_dangerous:
     default: true
   script:
     - snapcraft whoami
-    - cat <<< "$PRIVATE_KEY" > new_file
+    - cat <<< "$PRIVATE_KEY" > ~/new_file
     - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
     - echo building $KDE_SNAP_MODULE_NAME in dangerous mode ...
     - make dangerous
