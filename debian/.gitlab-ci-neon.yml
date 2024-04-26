@@ -3,12 +3,4 @@
 
 include:
   - project: sysadmin/ci-utilities
-    file:
-      - /gitlab-templates/snap-image-dangerous.yml
-#      - /gitlab-templates/snap-image-signed.yml
-
-default:
-  before_script:
-    - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
-  after_script:
-    - rm -rf ~/.snap/gnupg
+  - local: debian/snap-image-dangerous-proto.yml

@@ -1,0 +1,19 @@
+include:
+  - project: sysadmin/ci-utilities
+    file:
+      - /gitlab-templates/blocks/snap-base.yml
+      - /gitlab-templates/blocks/workflow.yml
+
+snap_image_dangerous:
+  extends: .snap_base
+  inherit:
+    default: true
+  before_script:
+    - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
+  script:
+    - echo building $KDE_SNAP_MODULE_NAME in dangerous mode ...
+    - snapcraft whoami
+    - make dangerous
+  interruptible: true
+  after_script:
+    - rm -rf ~/.snap/gnupg
