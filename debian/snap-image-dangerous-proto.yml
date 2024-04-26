@@ -8,10 +8,9 @@ snap_image_dangerous:
   extends: .snap_base
   inherit:
     default: true
-  before_script:
+  script:
     - snapcraft list-keys
     - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
-  script:
     - echo building $KDE_SNAP_MODULE_NAME in dangerous mode ...
     - snapcraft whoami
     - make dangerous
