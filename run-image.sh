@@ -24,7 +24,7 @@ IMAGE=$1
 OVMF_BIN=`find_ovmf_bin`
 
 echo "If you need to access local-snaps from the guest run: mount -t 9p host_share /mnt"
-qemu-system-x86_64 -smp 2 -m 2048 -machine accel=kvm \
+qemu-system-x86_64 -smp 4 -m 8192 -machine accel=kvm \
       -display gtk,gl=on \
       -net nic,model=virtio \
       -net user,hostfwd=tcp::8022-:22 \
