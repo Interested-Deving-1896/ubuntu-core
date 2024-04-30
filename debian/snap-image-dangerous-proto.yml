@@ -12,8 +12,9 @@ snap_image_dangerous:
     - export GNUPGHOME=/home/snaptester/.snap/
     - echo $GNUPGHOME
     - gpg --list-keys
-    - echo -e $PRIVATE_KEY | gpg --batch --pinentry-mode loopback --passphrase-fd 0 --import
-    - echo -e $OWNER_TRUST | gpg --import-ownertrust    
+    - gpg --batch --import <(echo "$PRIVATE_KEY")
+    #- gpg --batch --pinentry-mode loopback --passphrase-fd 0 --import <(echo "$PRIVATE_KEY")
+    - gpg --import-ownertrust <(echo "$OWNER_TRUST")  
     #- cat <<< "$PRIVATE_KEY" > ~/new_file
     #- echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
     - snapcraft whoami
