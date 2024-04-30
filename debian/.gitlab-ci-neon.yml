@@ -9,9 +9,5 @@ include:
 
 default:
   before_script:
-    - export GNUPGHOME=/home/snaptester/.snap/
-    - gpg --list-keys
-    - echo -e $PRIVATE_KEY | gpg --batch --pinentry-mode loopback --passphrase-fd 0 --import
-    - echo -e $OWNER_TRUST | gpg --import-ownertrust
+    - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
   after_script:
-    - rm -rf /home/snaptester/.snap/gnupg/
