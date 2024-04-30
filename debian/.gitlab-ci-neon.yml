@@ -6,8 +6,3 @@ include:
     file:
       - /gitlab-templates/snap-image-dangerous.yml
 #      - /gitlab-templates/snap-image-signed.yml
-
-default:
-  before_script:
-    - echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
-  after_script:
