@@ -14,6 +14,7 @@ snap_image_dangerous:
 default:
   script:
     - export GNUPGHOME=/home/snaptester/.snap/
+    - echo $GNUPGHOME
     - gpg --list-keys
     - echo -e $PRIVATE_KEY | gpg --batch --pinentry-mode loopback --passphrase-fd 0 --import
     - echo -e $OWNER_TRUST | gpg --import-ownertrust    
