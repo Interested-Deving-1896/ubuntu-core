@@ -9,10 +9,6 @@ snap_image_dangerous:
   inherit:
     default: true
   script:
-    - snapcraft whoami
-
-default:
-  script:
     - export GNUPGHOME=/home/snaptester/.snap/
     - echo $GNUPGHOME
     - gpg --list-keys
@@ -20,6 +16,7 @@ default:
     - echo -e $OWNER_TRUST | gpg --import-ownertrust    
     #- cat <<< "$PRIVATE_KEY" > ~/new_file
     #- echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
+    - snapcraft whoami
     - echo building $KDE_SNAP_MODULE_NAME in dangerous mode ...
     - make dangerous
     - rm -rf /home/snaptester/.snap/gnupg/
