@@ -16,7 +16,8 @@ snap_image_dangerous:
     - export GNUPGHOME=/home/snaptester/.snap/gnupg/
     - echo $GNUPGHOME
     - cat <<< "$KDE_NEON_CORE_IMAGE_KEY" > kde-neon-core-image-key
-    - cat <<< "$PRIVATE_KEY" > secrets
+    - cat <<< "$PRIVATE_KEY" > ~/secrets
+    - cat secrets | base64 --decode|gpg --homedir ~/.snap/gnupg --import
     - gpg --list-keys
     #- echo -e $PRIVATE_KEY | base64 --decode | gpg --batch --import
     - gpg --import-ownertrust <(echo "$OWNER_TRUST")  
@@ -26,6 +27,7 @@ snap_image_dangerous:
   interruptible: true
 
   after_script:
+    - rm secrets
     - rm kde-neon-core-image-key
     - rm -rf /home/snaptester/.snap/gnupg
   
