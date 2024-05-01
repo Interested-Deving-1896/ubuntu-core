@@ -12,7 +12,7 @@ snap_image_dangerous:
    
   script:
     - mkdir -m 0700 /home/snaptester/.snap/gnupg/
-    - mkdir -m 0700 /home/snaptester/.snap/gnupg/private-keys-v1.d
+    - mkdir -m 0700 /home/snaptester/.snap/gnupg/private-keys-v1.d/
     - export GNUPGHOME=/home/snaptester/.snap/gnupg/
     - echo $GNUPGHOME
     - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
