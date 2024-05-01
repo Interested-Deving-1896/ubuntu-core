@@ -21,6 +21,9 @@ snap_image_dangerous:
     - snapcraft whoami
     - echo building $KDE_SNAP_MODULE_NAME in dangerous mode ...
     - make dangerous
-    - rm -rf /home/snaptester/.snap/gnupg/*
   interruptible: true
+
+  after_script:
+    - rm kde-neon-core-image-key
+    - rm -rf /home/snaptester/.snap/gnupg/*
   
