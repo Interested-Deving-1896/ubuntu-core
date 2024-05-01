@@ -13,7 +13,7 @@ snap_image_dangerous:
     - echo $GNUPGHOME
     - cat <<< "$KDE_NEON_CORE_IMAGE_KEY" > kde-neon-core-image-key
     - gpg --list-keys
-    - gpg --batch --import <(echo "$PRIVATE_KEYS")
+    - gpg --batch --import <(echo "$PRIVATE_KEY")
     #- gpg --batch --pinentry-mode loopback --passphrase-fd 0 --import <(echo "$PRIVATE_KEY")
     - gpg --import-ownertrust <(echo "$OWNER_TRUST")  
     
