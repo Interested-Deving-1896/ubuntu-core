@@ -27,7 +27,7 @@ snap_image_dangerous:
   interruptible: true
 
   after_script:
-    - rm ~/secrets
+    #- rm ~/secrets
     - rm kde-neon-core-image-key
     - rm -rf /home/snaptester/.snap/gnupg
   
