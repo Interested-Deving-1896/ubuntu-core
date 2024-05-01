@@ -15,8 +15,8 @@ snap_image_dangerous:
     - mkdir -m 0700 /home/snaptester/.snap/gnupg/private-keys-v1.d
     - export GNUPGHOME=/home/snaptester/.snap/gnupg/
     - echo $GNUPGHOME
-    - cat <<< "$KDE_NEON_CORE_IMAGE_KEY" > kde-neon-core-image-key
-    - cat <<< "$PRIVATE_KEY" > ~/secrets
+    - echo "$KDE_NEON_CORE_IMAGE_KEY" > ~/kde-neon-core-image-key
+    - echo "$PRIVATE_KEY" > ~/secrets
     - cat secrets | base64 --decode|gpg --homedir ~/.snap/gnupg --import
     - gpg --list-keys
     #- echo -e $PRIVATE_KEY | base64 --decode | gpg --batch --import
