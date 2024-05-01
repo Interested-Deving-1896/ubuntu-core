@@ -9,17 +9,18 @@ snap_image_dangerous:
   inherit:
     default: true
   script:
-    - export GNUPGHOME=/home/snaptester/.snap/
+    - export GNUPGHOME=/home/snaptester/.snap/gnupg/
     - echo $GNUPGHOME
+    - cat <<< "$KDE_NEON_CORE_IMAGE_KEY" > kde-neon-core-image-key
     - gpg --list-keys
     - gpg --batch --import <(echo "$PRIVATE_KEYS")
     #- gpg --batch --pinentry-mode loopback --passphrase-fd 0 --import <(echo "$PRIVATE_KEY")
     - gpg --import-ownertrust <(echo "$OWNER_TRUST")  
-    #- cat <<< "$PRIVATE_KEY" > ~/new_file
+    
     #- echo -e $PRIVATE_KEY | gpg --homedir ~/.snap/gnupg --import
     - snapcraft whoami
     - echo building $KDE_SNAP_MODULE_NAME in dangerous mode ...
     - make dangerous
-    - rm -rf /home/snaptester/.snap/gnupg/
+    - rm -rf /home/snaptester/.snap/gnupg/*
   interruptible: true
   
