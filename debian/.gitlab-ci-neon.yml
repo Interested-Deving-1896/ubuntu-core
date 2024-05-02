@@ -6,8 +6,3 @@ include:
     file:
       - /gitlab-templates/snap-image-dangerous.yml
 #      - /gitlab-templates/snap-image-signed.yml
-
-publish:
-  stage: publish
-  script:
-    - Invoke-RestMethod -Headers @{ "UBUNTU_CORE_PUBLISH"="$CI_JOB_TOKEN" } -InFile kde-neon-core-dangerous-amd64.tar.gz -uri "${CI_API_V4_URL}/projects/30718/packages/generic/ubuntu_core/kde-neon-core-dangerous-amd64.tar.gz" -Method put -uri "${CI_API_V4_URL}/projects30718/packages/generic/ubuntu_core/kde-neon-core-dangerous-amd64_{$CI_COMMIT_TIMESTAMP}.tar.gz" -Method put
