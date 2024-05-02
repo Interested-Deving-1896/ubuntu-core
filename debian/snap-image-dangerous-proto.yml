@@ -26,7 +26,7 @@ snap_image_dangerous:
   interruptible: true
 
   after_script:
-    - Invoke-RestMethod -Headers @{ "UBUNTU_CORE_PUBLISH"="$CI_JOB_TOKEN" } -InFile kde-neon-core-dangerous-amd64.tar.gz -uri "${CI_API_V4_URL}/projects/30718/packages/generic/ubuntu_core/kde-neon-core-dangerous-amd64.tar.gz" -Method put -uri "${CI_API_V4_URL}/projects30718/packages/generic/ubuntu_core/kde-neon-core-dangerous-amd64_{$CI_COMMIT_TIMESTAMP}.tar.gz" -Method put
+    -     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file kde-neon-core-dangerous-amd64.tar.gz "${CI_API_V4_URL}/projects/30718/packages/generic/${CI_PROJECT_ID}/kde-neon-core-dangerous-amd64_{$CI_COMMIT_TIMESTAMP}.tar.gz" -Method put -uri "${CI_API_V4_URL}/projects/30718/packages/generic/${CI_PROJECT_ID}/kde-neon-core-dangerous-amd64_{$CI_COMMIT_TIMESTAMP}.tar.gz"'
     - rm kde-neon-core-image-key
     - rm -rf /home/snaptester/.snap/gnupg
   
