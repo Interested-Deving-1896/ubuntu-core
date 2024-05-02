@@ -26,7 +26,6 @@ snap_image_dangerous:
   interruptible: true
 
   after_script:
-    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file kde-neon-core-dangerous-amd64.tar.gz "${CI_API_V4_URL}/groups/30718/packages/generic/${CI_PROJECT_ID}/kde-neon-core-dangerous-amd64.tar.gz"'
     - rm kde-neon-core-image-key
     - rm -rf /home/snaptester/.snap/gnupg
-  
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file kde-neon-core-dangerous-amd64.tar.gz "${CI_API_V4_URL}/groups/30718/packages/generic/${CI_PROJECT_ID}/kde-neon-core-dangerous-amd64.tar.gz"'
