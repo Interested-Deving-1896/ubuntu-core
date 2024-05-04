@@ -5,4 +5,6 @@ include:
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/snap-image-dangerous.yml
-#      - /gitlab-templates/snap-image-signed.yml
+#      - /gitlab-templates/snap-image-signed.ymlv
+variables:
+  KDECI_GITLAB_TOKEN: "None"
