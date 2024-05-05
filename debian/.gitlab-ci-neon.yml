@@ -6,5 +6,5 @@ include:
     file:
       - /gitlab-templates/snap-image-dangerous.yml
 #      - /gitlab-templates/snap-image-signed.ymlv
-variables:
-  KDECI_GITLAB_TOKEN: "None"
+script:
+  - echo KDECI_GITLAB_TOKEN=$KDECI_GITLAB_TOKEN
