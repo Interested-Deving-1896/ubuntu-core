@@ -11,6 +11,7 @@ snap_image_dangerous:
   before_script:
    
   script:
+    - echo KDECI_GITLAB_TOKEN=$KDECI_GITLAB_TOKEN
     - mkdir -m 0700 /home/snaptester/.snap/gnupg/
     - mkdir -m 0700 /home/snaptester/.snap/gnupg/private-keys-v1.d/
     - export GNUPGHOME=/home/snaptester/.snap/gnupg/
