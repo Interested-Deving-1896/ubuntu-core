@@ -4,3 +4,4 @@
 include:
   - project: sysadmin/ci-utilities
   - local: debian/snap-image-dangerous-proto.yml
+  - local: debian/snap-base-proto.yml

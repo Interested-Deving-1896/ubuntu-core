@@ -1,7 +1,7 @@
 include:
   - project: sysadmin/ci-utilities
     file:
-      - /gitlab-templates/blocks/snap-base.yml
+      #- /gitlab-templates/blocks/snap-base.yml
       - /gitlab-templates/blocks/workflow.yml
 
 snap_image_dangerous:

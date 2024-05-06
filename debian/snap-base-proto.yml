@@ -1,0 +1,23 @@
+.snap_base:
+  stage: deploy
+  tags:
+    - Snap
+  variables:
+    KDE_SNAP_MODULE_NAME: ${CI_PROJECT_NAME}
+    SNAPCRAFT_BUILD_ENVIRONMENT: "host"
+    SNAPCRAFT_MANAGED_MODE: "y"
+  interruptible: true
+  before_script:
+    - git clone https://invent.kde.org/sysadmin/ci-utilities.git --depth=1
+    - git clone https://invent.kde.org/sysadmin/repo-metadata.git ci-utilities/repo-metadata/ --depth=1
+  script:
+    - git config --global --add safe.directory $CI_PROJECT_DIR
+  artifacts:
+    name: Snap artifacts
+    expose_as: 'KDE neon snaps'
+    when: always
+    paths:
+      - ".kde-ci-packages/"
+      - "task.log"
+      - "task-debug.log"
+    expire_in: 7 days
