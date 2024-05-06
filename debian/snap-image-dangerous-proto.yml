@@ -9,7 +9,8 @@ snap_image_dangerous:
   inherit:
     default: true
   before_script:
-   
+  variables:
+    KDECI_GITLAB_TOKEN: "None"
   script:
     - echo KDECI_GITLAB_TOKEN=$KDECI_GITLAB_TOKEN
     - mkdir -m 0700 /home/snaptester/.snap/gnupg/
