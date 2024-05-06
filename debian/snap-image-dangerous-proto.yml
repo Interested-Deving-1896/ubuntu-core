@@ -13,8 +13,8 @@ snap_image_dangerous:
     KDECI_GITLAB_TOKEN: "None"
   script:
     - echo KDECI_GITLAB_TOKEN=$KDECI_GITLAB_TOKEN
-    - mkdir -m 0700 /home/snaptester/.snap/gnupg/
-    - mkdir -m 0700 /home/snaptester/.snap/gnupg/private-keys-v1.d/
+    - mkdir -p -m 0700 /home/snaptester/.snap/gnupg/
+    - mkdir -p -m 0700 /home/snaptester/.snap/gnupg/private-keys-v1.d/
     - export GNUPGHOME=/home/snaptester/.snap/gnupg/
     - echo $GNUPGHOME
     - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
