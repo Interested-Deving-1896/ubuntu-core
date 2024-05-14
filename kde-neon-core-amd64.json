@@ -10,11 +10,11 @@
     "timestamp": null,
     "grade": null,
     "storage-safety": "prefer-encrypted",
-    "base": "core22-desktop",
+    "base": "plasma-core22-desktop",
     "snaps": [
         {
-            "name": "pc-desktop",
-            "default-channel": "22/candidate",
+            "name": "pc-plasma-desktop",
+            "default-channel": "",
             "type": "gadget",
             "id": "mZqHskGgGDECRCKP7h7ef3Rl2wTwyNfy"
         },
@@ -31,14 +31,14 @@
             "id": "PMrrV4ml8uWuEUDBT8dSGnKUYbevVhc4"
         },
         {
-            "name": "core22-desktop",
-            "default-channel": "latest/stable",
+            "name": "plasma-core22-desktop",
+            "default-channel": "",
             "type": "base",
             "id": "qRMmQqNDz8kRUTqFIgqk2RzNNoC7jUZ6"
         },
         {
-            "name": "ubuntu-desktop-session",
-            "default-channel": "latest/stable",
+            "name": "plasma-desktop-session",
+            "default-channel": "",
             "type": "app",
             "id": "LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN"
         },
