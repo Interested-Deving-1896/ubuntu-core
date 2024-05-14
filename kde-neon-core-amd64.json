@@ -121,6 +121,12 @@
             "id": "xODwiAdjx9KGChvI1z9Xx2JWJE7oLFF6"
         },
         {
+            "name": "firefox",
+            "default-channel": "latest/stable",
+            "type": "app",
+            "id": "3wdHCAVyZEmYsCMFDE9qt92UV8rC8Wdk"
+        },
+        {
             "name": "kf6-core22",
             "default-channel": "latest/stable",
             "type": "app",
