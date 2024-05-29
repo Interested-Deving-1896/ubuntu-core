@@ -14,9 +14,9 @@
     "snaps": [
         {
             "name": "pc-plasma-desktop",
-            "default-channel": "",
+            "default-channel": "latest/edge",
             "type": "gadget",
-            "id": "mZqHskGgGDECRCKP7h7ef3Rl2wTwyNfy"
+            "id": "9TJUGzZ1Vt503ZXdjOQmVfF6k4pAVrAO"
         },
         {
             "name": "pc-kernel",
@@ -32,15 +32,15 @@
         },
         {
             "name": "plasma-core22-desktop",
-            "default-channel": "",
+            "default-channel": "latest/edge",
             "type": "base",
-            "id": "qRMmQqNDz8kRUTqFIgqk2RzNNoC7jUZ6"
+            "id": "X9TwqMA7C0ENRxpA7Y4DzwPZvbDc20sR"
         },
         {
             "name": "plasma-desktop-session",
-            "default-channel": "",
+            "default-channel": "latest/edge",
             "type": "app",
-            "id": "LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN"
+            "id": "shFM21t3gsBQnlceeTRrWEdNoaLD88my"
         },
         {
             "name": "core22",
