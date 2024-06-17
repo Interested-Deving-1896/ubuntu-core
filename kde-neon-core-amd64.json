@@ -116,7 +116,7 @@
         },
         {
             "name": "ubuntu-core-desktop-init",
-            "default-channel": "latest/stable",
+            "default-channel": "latest/edge",
             "type": "app",
             "id": "xODwiAdjx9KGChvI1z9Xx2JWJE7oLFF6"
         },
