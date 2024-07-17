@@ -1,6 +1,8 @@
 include:
-  - /gitlab-templates/blocks/snap-base.yml
-  - /gitlab-templates/blocks/workflow.yml
+  - project: sysadmin/ci-utilities
+    file:
+      - /gitlab-templates/blocks/snap-base.yml
+      - /gitlab-templates/blocks/workflow.yml
 
 snap_image_model_dangerous:
   extends: .snap_base
