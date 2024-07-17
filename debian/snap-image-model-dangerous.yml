@@ -50,5 +50,5 @@ snap_image_model_dangerous:
     # delete the snapcraft auth creds
     - rm kde-neon-core-image-key
   rules:
-    changes:
+    - changes:
       - kde-neon-core-amd64.json  # Only re-generate the models when the base model file is changed
