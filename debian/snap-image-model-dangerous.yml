@@ -34,12 +34,15 @@ snap_image_model_dangerous:
     # copy the new model to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # push the new model to gitlab
-    - git config user.email "kde-neon-core-model-bot@kde.net"
-    - git config user.name "kde-neon-core-model-bot"
+    - git config user.email "kde-neon-core-model-bot@kde.org"
+    - git config user.name "kde-neon-core model-bot"
     - git remote add gitlab_origin https://oauth2:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org:neon/ubuntu-core.git
     - git add kde-neon-core-dangerous-amd64.model
+    - git status  # debug
     - git commit -m "Update signed model file"
-    - git push gitlab_origin HEAD:main -o ci.skip
+    - git status  # debug
+    - echo "git push gitlab_origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip"  # debug
+    #- git push gitlab_origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
@@ -49,6 +52,3 @@ snap_image_model_dangerous:
   rules:
     changes:
       - kde-neon-core-amd64.json  # Only re-generate the models when the base model file is changed
-  only:
-    refs:
-      - master  # Only re-generate the models for changes that make it to master
