@@ -5,7 +5,9 @@ include:
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/snap-image-dangerous.yml
-#      - /gitlab-templates/snap-image-signed.ymlv
+#      - /gitlab-templates/snap-image-signed.yml
+      - ./snap-image-model-dangerous.yml
+#      - ./snap-image-model-signed.yml
 default:
   before_script:
     - echo KDECI_GITLAB_TOKEN=$KDECI_GITLAB_TOKEN
