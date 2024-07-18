@@ -4,7 +4,7 @@ include:
       - /gitlab-templates/blocks/snap-base.yml
       - /gitlab-templates/blocks/workflow.yml
 
-snap_image_model_dangerous:
+snap_image_model:
   extends: .snap_base
   inherit:
     default: true
@@ -19,28 +19,31 @@ snap_image_model_dangerous:
     # copy in the required exported login creds so that snapcraft whoami works
     - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
     # feed snap's gpg the required key
-    - echo $PRIVATE_KEY | base64 --decode | gpg --batch --import
+#    - echo $PRIVATE_KEY | base64 --decode | gpg --batch --import
     # make sure the key is trusted
-    - gpg --import-ownertrust <(echo "$OWNER_TRUST")
+#    - gpg --import-ownertrust <(echo "$OWNER_TRUST")
     # test the keys
-    - gpg --list-keys
+#    - gpg --list-keys
     # test the login
-    - snapcraft whoami
+#    - snapcraft whoami
     # build the model with the project's tooling
-    - echo re-generating model for $KDE_SNAP_MODULE_NAME in dangerous mode ...
-    - make kde-neon-core-dangerous-amd64.model 2>&1 | tee task.log
+#    - echo re-generating models for $KDE_SNAP_MODULE_NAME ...
+#    - make kde-neon-core-dangerous-amd64.model 2>&1 | tee task.log
+#    - make kde-neon-core-signed-amd64.model 2>&1 | tee task.log
     # make the artifacts dir
-    - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
+#    - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
     # copy the new model to the artifacts dir
-    - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
+#    - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # push the new model to gitlab
     - git config user.email "kde-neon-core-model-bot@kde.org"
     - git config user.name "kde-neon-core model-bot"
-    - git remote add gitlab_origin https://oauth2:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org:neon/ubuntu-core.git
-    - git add kde-neon-core-dangerous-amd64.model
-    - git status  # debug
-    - git commit -m "Update signed model file"
-    - git status  # debug
+    - git status  # FIXME debug
+    - git remote -v  # FIXME debug
+    - git remote add gitlab_origin https://invent.kde.org/neon/ubuntu-core.git
+#    - git remote add gitlab_origin https://oauth2:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org:neon/ubuntu-core.git
+#    - git add ./*.model
+#    - git status  # debug
+#    - git commit -m "Update model files"
     - echo "git push gitlab_origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip"  # debug
     #- git push gitlab_origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
