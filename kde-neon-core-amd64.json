@@ -112,7 +112,8 @@
             "name": "firefox",
             "default-channel": "latest/stable",
             "type": "app",
-            "id": "3wdHCAVyZEmYsCMFDE9qt92UV8rC8Wdk"
+            "id": "3wdHCAVyZEmYsCMFDE9qt92UV8rC8Wdk",
+            "presence": "optional"
         },
         {
             "name": "kf6-core22",
