@@ -103,18 +103,6 @@
             "id": "J60k4JY0HppjwOjW8dZdYc8obXKxujRu"
         },
         {
-            "name": "snapd-desktop-integration",
-            "default-channel": "latest/edge/ubuntu-core-desktop",
-            "type": "app",
-            "id": "IrwRHakqtzhFRHJOOPxKVPU0Kk7Erhcu"
-        },
-        {
-            "name": "snap-store",
-            "default-channel": "latest/stable/ubuntu-23.10",
-            "type": "app",
-            "id": "gjf3IPXoRiipCu9K0kVu52f0H56fIksg"
-        },
-        {
             "name": "ubuntu-core-desktop-init",
             "default-channel": "latest/edge",
             "type": "app",
