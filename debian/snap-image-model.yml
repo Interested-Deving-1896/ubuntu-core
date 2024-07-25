@@ -35,12 +35,12 @@ snap_image_model:
     # copy the new model to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # push the new model to gitlab
+    - echo pushing new models to branch $CI_COMMIT_REF_NAME
     - git config user.email "kde-neon-core-model-bot@kde.org"
     - git config user.name "kde-neon-core model-bot"
     - git remote add gitlab_origin https://oauth2:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org:neon/ubuntu-core.git
     - git add ./*.model
     - git commit -m "Update model files"
-    - echo "git push gitlab_origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip"  # debug
     - git push gitlab_origin HEAD:$CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
