@@ -40,7 +40,7 @@ snap_image_model:
     - git config user.name "kde-neon-core model-bot"
     - git add -f ./*.model
     - git commit -m "Update model files"
-    - git push https://oauth2:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org:neon/ubuntu-core.git HEAD:$CI_COMMIT_REF_NAME -o ci.skip
+    - git push https://oauth2:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org/neon/ubuntu-core.git HEAD:$CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
