@@ -2,7 +2,7 @@ include:
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/blocks/snap-base.yml
-      - /gitlab-templates/blocks/workflow.yml
+      #- /gitlab-templates/blocks/workflow.yml
 
 snap_image_model:
   extends: .snap_base
@@ -48,6 +48,7 @@ snap_image_model:
     # delete the snapcraft auth creds
     - rm kde-neon-core-image-key
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: $CI_COMMIT_BRANCH
+    #- if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - changes:
       - kde-neon-core-amd64.json  # Only re-generate the models when the base model json is changed
