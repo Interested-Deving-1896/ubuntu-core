@@ -35,7 +35,8 @@ snap_image_model:
     # copy the new model to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # push the new model to gitlab
-    - echo pushing new models to branch $CI_COMMIT_REF_NAME
+    - echo currently on branch $CI_COMMIT_BRANCH, pipeline source is $CI_PIPELINE_SOURCE
+    - echo pushing new models to ref $CI_COMMIT_REF_NAME
     - git config user.email "kde-neon-core-model-bot@kde.org"
     - git config user.name "kde-neon-core model-bot"
     - git add -f ./*.model
@@ -49,6 +50,6 @@ snap_image_model:
     - rm kde-neon-core-image-key
   rules:
     - if: $CI_COMMIT_BRANCH
-    #- if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    #- if: '$CI_PIPELINE_SOURCE == "merge_request_event"'  # Does not let us use secret variables
     - changes:
       - kde-neon-core-amd64.json  # Only re-generate the models when the base model json is changed
