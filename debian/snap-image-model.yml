@@ -9,6 +9,7 @@ snap_image_model:
   inherit:
     default: true
   script:  # Have to duplicate most of the snap-image code as the default `make` command will remove the model file
+    - echo currently on branch $CI_COMMIT_BRANCH, ref $CI_COMMIT_REF_NAME, pipeline source is $CI_PIPELINE_SOURCE
     # make sure there is a snap specific so gpg doesn't freak out
     - mkdir -p -m 0700 ¬/.snap/gnupg/
     - mkdir -p -m 0700 ¬/.snap/gnupg/private-keys-v1.d/
@@ -35,7 +36,6 @@ snap_image_model:
     # copy the new model to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # push the new model to gitlab
-    - echo currently on branch $CI_COMMIT_BRANCH, pipeline source is $CI_PIPELINE_SOURCE
     - echo pushing new models to ref $CI_COMMIT_REF_NAME
     - git config user.email "kde-neon-core-model-bot@kde.org"
     - git config user.name "kde-neon-core model-bot"
