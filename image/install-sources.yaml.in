@@ -1,0 +1,12 @@
+- default: true
+  description:
+    en: KDE Neon Core Desktop.
+  id: kde-neon-core-desktop
+  locale_support: none
+  name:
+    en: KDE Neon Core Desktop
+  path: pc.img.xz
+  type: dd-xz:file
+  size: @SIZE@
+  variant: core 
+

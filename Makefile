@@ -2,7 +2,11 @@ all: dangerous signed
 
 dangerous: kde-neon-core-dangerous-amd64.tar.gz
 
+dangerous-iso: kde-neon-core-dangerous-amd64.iso
+
 signed: kde-neon-core-signed-amd64.tar.gz
+
+signed-iso: kde-neon-core-signed-amd64.iso
 
 kde-neon-core-signed-amd64.snap-list: kde-neon-core-amd64.json
 	./create-snap-list.sh signed $< $@
@@ -29,8 +33,22 @@ kde-neon-core-dangerous-amd64.model: kde-neon-core-amd64.json
 %.tar.gz: %.img
 	tar zcvf $@ $<
 
+%.img.xz: %.img
+	echo "generate xz file"
+	xz --force --threads=0 -vv $<
+
+%.installer.img: %.img.xz
+	-rm -rf output/
+	cat image/install-sources.yaml.in |sed "s/@SIZE@/$(shell stat -c%s $<)/g" > image/install-sources.yaml
+	cat image/core-desktop.yaml.in |sed "s/@PATH@/$</g" > image/core-desktop.yaml
+	sudo ubuntu-image classic --debug -O output/ image/core-desktop.yaml
+	mv output/plasma-core-desktop-22-amd64.img $@
+
+%.iso: %.installer.img
+	sudo ./create_iso.sh $<
+
 clean:
-	rm -rf *.model.build
+	rm -rf *.model.build image2
 	rm -f *.snap-list *.img *.tar.gz *-signed-*.json *-dangerous-*.json
 
 .PHONY: all clean dangerous signed
