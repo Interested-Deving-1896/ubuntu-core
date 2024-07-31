@@ -1,4 +1,8 @@
 local-snaps/*
+image/install-sources.yaml
+image/core-desktop.yaml
+image2/*
+output/*
 *-signed-*.json
 *-dangerous-*.json
 *.snap-list
@@ -6,3 +10,5 @@ local-snaps/*
 *.model.build
 *.img
 *.tar.gz
+*.xz
+*.iso
