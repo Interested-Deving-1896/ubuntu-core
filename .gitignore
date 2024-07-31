@@ -1,4 +1,6 @@
 local-snaps/*
+image2/*
+output/*
 *-signed-*.json
 *-dangerous-*.json
 *.snap-list
@@ -6,3 +8,5 @@ local-snaps/*
 *.model.build
 *.img
 *.tar.gz
+*.xz
+*.iso

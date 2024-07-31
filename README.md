@@ -53,3 +53,9 @@ For running images:
 
 * qemu-system-x86_64
 
+## Generating ISO
+
+Ensure you are in a system providing apt tooling, with `xorriso` and `mtools` packages installed
+```
+make <grade>-iso
+```
