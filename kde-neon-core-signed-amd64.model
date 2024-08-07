@@ -1,0 +1,115 @@
+type: model
+authority-id: 68znmZSFoknpbUZtBp0RTW9CGIN34tAQ
+series: 16
+brand-id: 68znmZSFoknpbUZtBp0RTW9CGIN34tAQ
+model: kde-neon-core-22-amd64
+architecture: amd64
+base: plasma-core22-desktop
+display-name: KDE Neon Core 22 (amd64), signed
+grade: signed
+snaps:
+  -
+    default-channel: latest/edge
+    id: 9TJUGzZ1Vt503ZXdjOQmVfF6k4pAVrAO
+    name: pc-plasma-desktop
+    type: gadget
+  -
+    default-channel: 23.10/stable
+    id: pYVQrBcKmBa0mZ4CCN7ExT6jH8rY1hza
+    name: pc-kernel
+    type: kernel
+  -
+    default-channel: latest/edge/ubuntu-core-desktop
+    id: PMrrV4ml8uWuEUDBT8dSGnKUYbevVhc4
+    name: snapd
+    type: snapd
+  -
+    default-channel: latest/edge
+    id: X9TwqMA7C0ENRxpA7Y4DzwPZvbDc20sR
+    name: plasma-core22-desktop
+    type: base
+  -
+    default-channel: latest/edge
+    id: shFM21t3gsBQnlceeTRrWEdNoaLD88my
+    name: plasma-desktop-session
+    type: app
+  -
+    default-channel: latest/stable
+    id: amcUKQILKXHHTlmSa7NMdnXSx02dNeeT
+    name: core22
+    type: base
+  -
+    default-channel: 22/stable
+    id: RmBXKl6HO6YOC2DE4G2q1JzWImC04EUy
+    name: network-manager
+    type: app
+  -
+    default-channel: latest/stable
+    id: EISPgh06mRh1vordZY9OZ34QHdd7OrdR
+    name: bare
+    type: base
+  -
+    default-channel: latest/stable
+    id: jZLfBRzf1cYlYysIjD2bwSzNtngY0qit
+    name: gtk-common-themes
+    type: app
+  -
+    default-channel: latest/stable
+    id: lATO8HzwVvrAPrlZRAWpfyrJKlAJrZS3
+    name: gnome-42-2204
+    type: app
+  -
+    default-channel: latest/stable
+    id: m1eQacDdXCthEwWQrESei3Zao3d5gfJF
+    name: cups
+    type: app
+  -
+    default-channel: latest/stable
+    id: WJKWBUuCDufOFw2p24tvkbbw02plGkbd
+    name: ipp-usb
+    type: app
+  -
+    default-channel: 22/stable
+    id: dVK2PZeOLKA7vf1WPCap9F8luxTk9Oll
+    name: avahi
+    type: app
+  -
+    default-channel: 22/stable
+    id: JmzJi9kQvHUWddZ32PDJpBRXUpGRxvNS
+    name: bluez
+    type: app
+  -
+    default-channel: latest/stable
+    id: J60k4JY0HppjwOjW8dZdYc8obXKxujRu
+    name: lxd
+    type: app
+  -
+    default-channel: latest/edge
+    id: xODwiAdjx9KGChvI1z9Xx2JWJE7oLFF6
+    name: ubuntu-core-desktop-init
+    type: app
+  -
+    default-channel: latest/stable
+    id: 3wdHCAVyZEmYsCMFDE9qt92UV8rC8Wdk
+    name: firefox
+    presence: optional
+    type: app
+  -
+    default-channel: latest/stable
+    id: DlAIkaMJ1XMsnQRKcn0EjE2nc1S37X4r
+    name: kf6-core22
+    type: app
+storage-safety: prefer-encrypted
+timestamp: 2024-08-07T12:36:11+00:00
+sign-key-sha3-384: zs7jdlmvmsrCLUY5JGZqEjUEtpmc-TUbW4t0xlUCRW3FmEMSc99AtETzxSBGuHPX
+
+AcLBcwQAAQoAHRYhBLkCjH7b6LJgrmzU0/OQSIyv3/oeBQJms2o8AAoJEPOQSIyv3/oe1+IQALh1
+fVbADIa2uY/2zI06pYi+PwtgTmcNHer0EzPNxBQEJMg3Xs1HlqAA/5DyQPTazcUtwUWeDSG1GYEM
+LTJXDJx7hpFNHrJq2NxFda6v3sWcSDJEeHGZIb6aCfVWPgFizJp/DXGIAQlvjbIqofMlDxHDIt4x
+XCRsa2WBuuNi1/EnzZhpHXUKENlfyYSsY/I+t2dL0TQBxFbIxx4HpecRcAWayYlBRqROKak0IjNO
+q5CWpZs6WnmaFk3EsH7l+4zZcTKtfzPjaO7AEiudKfMt4RMdgwIaiFWTk5plnw4QEL7T1TZ/8OAi
+VedfRYujGdUjuLdojLnfxqAHBaB5T0zTZQkvBZrsS3/TrAqpulligXbW2cSTufWryVRcnAJfMJD4
+gA8Nk2Fb990YPDmHjCEX31wD5m2gmjpYb6Sz+Y0GTUPNgnEcPrutt5d71urR6j65rS3HUg/5naiA
+LFhjPyykx5RIYBdWkuNxcRJK5OlFGgNJpCyqStvzQBPg15jvtd5od4CZ3NHOJuiLAoYJfqlPT6Yl
+QKSWlz4Grg6tnd8iRLDIKj9+LjCO3hZC6iiqb2EGNJJUgEr5dwgr/idxDwfei/Jt6NE6Hvc1UXuK
+xK0p9auvJFCopyCVksH0g0LXHbMWatN8nvdZY7GY2hfV1B8JHVQ4vApD31SQ+T3MNBS14lIu
