@@ -8,6 +8,11 @@ neon_core_models:
   extends: .snap_base
   inherit:
     default: true
+  before_script:
+    # set bot identity and switch to the correct branch
+    - git config user.email "project_17308_bot_bfe008c722508de9710d4b73ec01c4a0@invent.kde.org"
+    - git config user.name "Neon Core-Bot"
+    - git checkout "$CI_COMMIT_REF_NAME"
   script:
     # make sure there is a snap specific so gpg doesn't freak out
     - mkdir -p -m 0700 ¬/.snap/gnupg/
@@ -32,17 +37,8 @@ neon_core_models:
     - make kde-neon-core-signed-amd64.model 2>&1 | tee task.log
     # make the artifacts dir
     - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
-    # copy the new model to the artifacts dir
+    # copy the new models to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
-    # set our identity
-    - git config user.email "project_17308_bot_bfe008c722508de9710d4b73ec01c4a0@invent.kde.org"
-    - git config user.name "Neon Core-Bot"
-    # FIXME: debugging the CI
-    - git fetch
-    - git status
-    - git log -5 --oneline --graph
-    - git branch -a
-    - echo "$CI_COMMIT_REF_NAME"
     # add the model and commit
     - git add -f ./kde-neon-core-dangerous-amd64.model ./kde-neon-core-signed-amd64.model
     - git commit -m "Update models"
@@ -50,6 +46,9 @@ neon_core_models:
     - git push https://project_17308_bot_bfe008c722508de9710d4b73ec01c4a0:$GIT_MODEL_COMMIT@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
+    # cleanup local branches to avoid outdated states in future runs
+    - git checkout "$CI_COMMIT_SHA"
+    - git branch -D "$CI_COMMIT_REF_NAME"
     # delete the gpg keyring
     - rm -rf ¬/.snap/gnupg
     # delete the snapcraft auth creds
