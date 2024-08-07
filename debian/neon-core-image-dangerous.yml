@@ -1,0 +1,23 @@
+include:
+  - /gitlab-templates/blocks/workflow.yml
+
+neon_core_image_dangerous:
+  script:
+    # build the image with the project's tooling
+    - echo building kde-neon-core in dangerous mode ...
+    - make dangerous 2>&1 | tee task.log
+    # make the artifacts dir
+    - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
+    # copy the gun zipped tar to the artifacts dir
+    - cp -vf ./*.tar.gz  $CI_PROJECT_DIR/.kde-ci-packages/
+  interruptible: true
+  artifacts:
+    name: CI artifacts
+    expose_as: 'KDE Neon Core images'
+    when: always
+    paths:
+      - ".kde-ci-packages/"
+      - "task.log"
+      - "task-debug.log"
+    expire_in: 7 days
+

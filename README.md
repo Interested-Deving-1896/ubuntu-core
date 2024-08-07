@@ -4,11 +4,17 @@ This repository contains all that's needed to build and run images provided the 
 
 ## Building images
 
-There are two grades of images: signed and dangerous. Using `make <grade>` to build one of the two images. `make` or `make all` will build both the dangerous and the signed images. They will also be automatically compressed in `tar.gz` format at the end of the process.
+There are two grades of images: signed and dangerous. Using `make <grade>` to build one of the two images. `make` or `make all` will build both the dangerous and the signed images. They will also be automatically compressed in `tar.gz` format at the end of the process. You can also use `make kde-neon-core-<grade>-amd64.img` to build the image without compression and without deleting temporary files.
 
 ### Signatures and keys
 
-Signatures will occur during this process. This requires having an Ubuntu One account as described here:
+In order to build the image, a signed `.model` file needs to exist. Up-to-date models are provided in the repository.
+
+After changing the `kde-neon-core-amd64.json` file, you will need to update these `kde-neon-core-<grade>-amd64.model` files.
+
+#### Generating models with Make
+
+The `Makefile` can handle that step for you if you call `make <model-file>`. Signatures will occur during this process. This requires having an Ubuntu One account as described here:
 
 https://ubuntu.com/core/docs/create-ubuntu-one
 
@@ -16,9 +22,17 @@ This also requires having registered keys, as described in the first two steps o
 
 https://ubuntu.com/core/docs/sign-model-assertion
 
-The `Makefile` will handle the rest for you but it assumes your key to be created with the name `kde-neon-core-image-key`.
+The Makefile assumes your key to be created with the name `kde-neon-core-image-key`. Also, no build can occur if you're not authenticated in your Ubuntu One account with `snapcraft`. To sanity check this, running `snapcraft whoami` will tell you under which account you are authenticated.
 
-Also, no build can occur if you're not authenticated in your Ubuntu One account with `snapcraft`. To sanity check this, running `snapcraft whoami` will tell you under which account you are authenticated.
+#### Generating models with the CI
+
+If Make is not a practical option for you, it is possible to let the CI handle the update of model files:
+
+In the Gitlab web interface, go to the Pipelines page and click the "Run pipeline" button. This will take you to https://invent.kde.org/neon/ubuntu-core/-/pipelines/new. On this page, select your branch, and click the "Run pipeline" button again. In the pipeline view, you can click the "snap_image_model" job to manually start it.
+
+Your branch needs to be protected, and its name needs to match the `models.*` pattern for the job to run.
+
+Once the job is complete, it will upload both `dangerous` and `signed` versions of the model as pipeline artefacts, and push them to your branch in a "Update models" commit. Once you pull the commit, you will be able to build the full image locally.
 
 ### dangerous vs signed
 

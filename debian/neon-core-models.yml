@@ -4,12 +4,11 @@ include:
       - /gitlab-templates/blocks/snap-base.yml
       - /gitlab-templates/blocks/workflow.yml
 
-snap_image_model:
+neon_core_models:
   extends: .snap_base
   inherit:
     default: true
-  script:  # Have to duplicate most of the snap-image code as the default `make` command will remove the model file
-    - echo currently on branch $CI_COMMIT_BRANCH, ref $CI_COMMIT_REF_NAME, pipeline source is $CI_PIPELINE_SOURCE
+  script:
     # make sure there is a snap specific so gpg doesn't freak out
     - mkdir -p -m 0700 ¬/.snap/gnupg/
     - mkdir -p -m 0700 ¬/.snap/gnupg/private-keys-v1.d/
@@ -35,13 +34,14 @@ snap_image_model:
     - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
     # copy the new model to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
-    # push the new model to gitlab
-    - echo pushing new models to ref $CI_COMMIT_REF_NAME
-    - git config user.email "ubuntu-neon-core-models-bot@kde.org"
-    - git config user.name "ubuntu-neon-core models-bot"
-    - git add -f ./*.model
+    # set our identity
+    - git config user.email "project_17308_bot_bfe008c722508de9710d4b73ec01c4a0@invent.kde.org"
+    - git config user.name "Neon Core-Bot"
+    # add the model and commit
+    - git add -f ./kde-neon-core-dangerous-amd64.model ./kde-neon-core-signed-amd64.model
     - git commit -m "Update models"
-    - git push https://project_17308_bot_a45360256b28775b175cf622f6b817ad:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org/neon/ubuntu-core.git HEAD:$CI_COMMIT_REF_NAME -o ci.skip
+    # push the new model to gitlab, and prevent the CI from triggering after a bot push
+    - git push https://project_17308_bot_bfe008c722508de9710d4b73ec01c4a0:$GIT_MODEL_COMMIT@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
