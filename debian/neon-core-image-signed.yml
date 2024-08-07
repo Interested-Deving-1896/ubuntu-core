@@ -4,6 +4,7 @@ include:
       - /gitlab-templates/blocks/workflow.yml
 
 neon_core_image_signed:
+  stage: build
   script:
     # build the image with the project's tooling
     - echo building kde-neon-core in signed mode ...
