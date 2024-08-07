@@ -4,13 +4,9 @@ include:
       - /gitlab-templates/blocks/snap-base.yml
       - /gitlab-templates/blocks/workflow.yml
 
-workflow:  # Restore default behavior disabled by workflow.yml
-  rules:
-    - if: $CI_COMMIT_BRANCH
-    - if: $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_OPEN_MERGE_REQUESTS
-      when: on_success
-
 snap_image_model:
+  when: manual
+  manual_confirmation: 'Are you sure you want to generate and push models for branch $CI_COMMIT_REF_NAME?'
   extends: .snap_base
   inherit:
     default: true
@@ -47,13 +43,16 @@ snap_image_model:
     - git config user.name "kde-neon-core model-bot"
     - git add -f ./*.model
     - git commit -m "Update model files"
-    - git push https://gitlab-ci-token:${UBUNTU_NEON_CORE_ACCESS_TOKEN}@invent.kde.org/neon/ubuntu-core HEAD:$CI_COMMIT_REF_NAME -o ci.skip
+    - git push https://@project_17308_bot_a45360256b28775b175cf622f6b817ad:${UBUNTU_NEON_CORE_ACCESS_TOKEN}@invent.kde.org/neon/ubuntu-core HEAD:$CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
     - rm -rf ¬/.snap/gnupg
     # delete the snapcraft auth creds
     - rm kde-neon-core-image-key
-  rules:
-    - changes:
-      - kde-neon-core-amd64.json  # Only re-generate the models when the base model json is changed
+  rules:  # Only on manual triggers and on a non-master branch
+    - if: $CI_PIPELINE_SOURCE != "web"
+      when: never
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: never
+

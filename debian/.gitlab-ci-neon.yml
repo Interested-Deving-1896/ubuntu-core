@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: CC0-1.0
 
 include:
-  - local: debian/snap-image-model.yml
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/snap-image-dangerous.yml
 #      - /gitlab-templates/snap-image-signed.yml
+  - local: debian/snap-image-model.yml
