@@ -36,8 +36,8 @@ snap_image_model:
     # copy the new model to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # push the new model to gitlab
-    - git config user.email "project_17308_bot_a45360256b28775b175cf622f6b817ad@invent.kde.org"
-    - git config user.name "$UBUNTU_NEON_CORE_ACCESS_TOKEN"
+    - git config --global user.email "project_17308_bot_a45360256b28775b175cf622f6b817ad@invent.kde.org"
+    - git config --global user.name "$UBUNTU_NEON_CORE_ACCESS_TOKEN"
     - git switch $CI_COMMIT_REF_NAME
     - git add -f ./*.model
     - git commit -m "Update models again"
