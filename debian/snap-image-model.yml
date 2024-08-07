@@ -38,7 +38,7 @@ snap_image_model:
     # push the new model to gitlab
     - git config user.email "project_17308_bot_a45360256b28775b175cf622f6b817ad@invent.kde.org"
     - git config user.name "$UBUNTU_NEON_CORE_ACCESS_TOKEN"
-    - git switch HEAD:$CI_COMMIT_REF_NAME
+    - git switch $CI_COMMIT_REF_NAME
     - git add -f ./*.model
     - git commit -m "Update models again"
     - git push "https://$PROJECT_TOKEN_USERNAME:${UBUNTU_NEON_CORE_ACCESS_TOKEN}@invent.kde.org/neon/ubuntu-core.git HEAD:$CI_COMMIT_REF_NAME" -o ci.skip
