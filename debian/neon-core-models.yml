@@ -41,7 +41,7 @@ neon_core_models:
     - git add -f ./kde-neon-core-dangerous-amd64.model ./kde-neon-core-signed-amd64.model
     - git commit -m "Update models"
     # push the new model to gitlab, and prevent the CI from triggering after a bot push
-    - git push https://project_17308_bot_bfe008c722508de9710d4b73ec01c4a0:$GIT_MODEL_COMMIT@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
+    - git push https://project_17308_bot_bfe008c722508de9710d4b73ec01c4a0:$GIT_MODEL_COMMIT@invent.kde.org/neon/ubuntu-core.git "$CI_COMMIT_REF_NAME" -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
