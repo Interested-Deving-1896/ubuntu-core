@@ -1,0 +1,15 @@
+## Generate new model files for the image
+
+After changing the `kde-neon-core-amd64.json` file, you will need to update the signed `kde-neon-core-*-amd64.model`
+files in order to build the image. If you do not have the necessary credentials to sign these models locally, you can
+use the CI instead.
+
+In the Gitlab web interface, go to the Pipelines page and click the "Run pipeline" button. This will take you to
+https://invent.kde.org/neon/ubuntu-core/-/pipelines/new. On this page, select your branch, and click the "Run pipeline"
+button again. In the pipeline view, you can click the "snap_image_model" job to manually start it.
+
+Your branch needs to be protected, and its name needs to match the `models.*` pattern for the job to run.
+
+Once the job is complete, it will upload both `dangerous` and `signed` versions of the model as pipeline artefacts, and
+push them to your branch in a "Update models" commit. Once you pull the commit, you will be able to build the full image
+locally.
