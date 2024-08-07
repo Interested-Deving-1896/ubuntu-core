@@ -1,12 +1,13 @@
 include:
   - project: sysadmin/ci-utilities
     file:
+      - /gitlab-templates/blocks/snap-base.yml
       - /gitlab-templates/blocks/workflow.yml
 
 neon_core_image_signed:
-  tags:
-    - Snap
-  stage: build
+  extends: .snap_base
+  inherit:
+    default: true
   script:
     # build the image with the project's tooling
     - echo building kde-neon-core in signed mode ...
@@ -16,12 +17,3 @@ neon_core_image_signed:
     # copy the gun zipped tar to the artifacts dir
     - cp -vf ./*.tar.gz  $CI_PROJECT_DIR/.kde-ci-packages/
   interruptible: true
-  artifacts:
-    name: CI artifacts
-    expose_as: 'KDE Neon Core images'
-    when: always
-    paths:
-      - ".kde-ci-packages/"
-      - "task.log"
-      - "task-debug.log"
-    expire_in: 7 days
