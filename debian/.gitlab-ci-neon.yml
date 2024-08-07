@@ -6,3 +6,4 @@ include:
     file:
       - /gitlab-templates/snap-image-dangerous.yml
 #      - /gitlab-templates/snap-image-signed.yml
+  - local: debian/snap-image-model.yml
