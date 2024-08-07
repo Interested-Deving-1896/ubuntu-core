@@ -39,7 +39,7 @@ snap_image_model:
     - echo pushing new models to ref $CI_COMMIT_REF_NAME
     - git add -f ./*.model
     - git commit -m "Update models"
-    - git push https://$PROJECT_TOKEN_USERNAME:$UBUNTU_NEON_CORE_ACCESS_TOKEN@invent.kde.org/neon/ubuntu-core.git HEAD:$CI_COMMIT_REF_NAME -o ci.skip
+    - git push https://$PROJECT_TOKEN_USERNAME:${UBUNTU_NEON_CORE_ACCESS_TOKEN}@invent.kde.org/neon/ubuntu-core.git HEAD:$CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
