@@ -9,6 +9,8 @@ neon_core_image_signed:
   inherit:
     default: true
   script:
+    # get the missing plasma-desktop-session snap from runner FS
+    - cp ../plasma-desktop-session.snap ./local-snaps/
     # build the image with the project's tooling
     - echo building kde-neon-core in signed mode ...
     - make signed 2>&1 | tee task.log
