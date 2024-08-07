@@ -5,8 +5,6 @@ include:
       - /gitlab-templates/blocks/workflow.yml
 
 snap_image_model:
-  when: manual
-  manual_confirmation: 'Are you sure you want to generate and push models for branch $CI_COMMIT_REF_NAME?'
   extends: .snap_base
   inherit:
     default: true
@@ -50,9 +48,9 @@ snap_image_model:
     - rm -rf ¬/.snap/gnupg
     # delete the snapcraft auth creds
     - rm kde-neon-core-image-key
-  rules:  # Only on manual triggers and on a non-master branch
-    - if: $CI_PIPELINE_SOURCE != "web"
-      when: never
-    - if: $CI_COMMIT_BRANCH == "master"
+  rules:  # Only allow manual trigger on `models.*` branches
+    - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
+      when: manual
+    - if: '$CI_COMMIT_BRANCH !~ /models\..*/'
       when: never
 
