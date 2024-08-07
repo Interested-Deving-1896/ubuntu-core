@@ -46,7 +46,7 @@ snap_image_model:
     - git add -f ./*.model
     - git commit -m "Update models again"
     # push the new model to gitlab
-    - git push https://project_17308_bot_41c9ef5edaae96df786f272eeb583466:${UBUNTU_NEON_CORE_ACCESS_TOKEN}@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
+    - git push https://project_17308_bot_41c9ef5edaae96df786f272eeb583466:$GIT_MODEL_COMMIT@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
