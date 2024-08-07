@@ -36,8 +36,8 @@ snap_image_model:
     # copy the new model to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # set our identity
-    - git config user.email "project_17308_bot_a45360256b28775b175cf622f6b817ad@invent.kde.org"
-    - git config user.name "project_17308_bot_a45360256b28775b175cf622f6b817ad"
+    - git config user.email "project_17308_bot_41c9ef5edaae96df786f272eeb583466@invent.kde.org"
+    - git config user.name "project_17308_bot_41c9ef5edaae96df786f272eeb583466"
     # make sure we are on the branch we want
     - git checkout $CI_COMMIT_REF_NAME
     # make sure we haven't got behind 
@@ -46,7 +46,7 @@ snap_image_model:
     - git add -f ./*.model
     - git commit -m "Update models again"
     # push the new model to gitlab
-    - git push https://project_17308_bot_a45360256b28775b175cf622f6b817ad:${UBUNTU_NEON_CORE_ACCESS_TOKEN}@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
+    - git push https://project_17308_bot_41c9ef5edaae96df786f272eeb583466:${UBUNTU_NEON_CORE_ACCESS_TOKEN}@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
   interruptible: true
   after_script:
     # delete the gpg keyring
