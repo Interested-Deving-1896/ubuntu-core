@@ -41,7 +41,7 @@ snap_image_model:
     # make sure we are on the branch we want
     - git checkout $CI_COMMIT_REF_NAME
     # make sure we haven't got behind 
-    - git pull
+    - git pull --rebase
     # add the model and commit
     - git add -f ./*.model
     - git commit -m "Update models again"
