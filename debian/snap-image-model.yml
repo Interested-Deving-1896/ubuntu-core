@@ -37,7 +37,7 @@ snap_image_model:
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
     # set our identity
     - git config user.email "project_17308_bot_41c9ef5edaae96df786f272eeb583466@invent.kde.org"
-    - git config user.name "project_17308_bot_41c9ef5edaae96df786f272eeb583466"
+    - git config user.name "UBUNTU_NEON_CORE_ACCESS_TOKEN"
     # make sure we are on the branch we want
     - git checkout $CI_COMMIT_REF_NAME
     # make sure we haven't got behind 
