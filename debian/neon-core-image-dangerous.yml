@@ -1,5 +1,7 @@
 include:
-  - /gitlab-templates/blocks/workflow.yml
+  - project: sysadmin/ci-utilities
+    file:
+      - /gitlab-templates/blocks/workflow.yml
 
 neon_core_image_dangerous:
   script:
