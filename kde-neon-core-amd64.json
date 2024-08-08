@@ -120,6 +120,34 @@
             "default-channel": "latest/stable",
             "type": "app",
             "id": "DlAIkaMJ1XMsnQRKcn0EjE2nc1S37X4r"
+        },
+        {
+            "name": "okular",
+            "default-channel": "latest/stable",
+            "type": "app",
+            "id": "SfUqQ280Y4bJ0k64qtBKTTXq5ml46tvQ",
+            "presence": "optional"
+        },
+        {
+            "name": "gwenview",
+            "default-channel": "latest/stable",
+            "type": "app",
+            "id": "exqoWOIGvIl1u4gzKvpjLCZ9cvI6UTbP",
+            "presence": "optional"
+        },
+        {
+            "name": "elisa",
+            "default-channel": "latest/stable",
+            "type": "app",
+            "id": "CwdMAZoScOw1AcaGwtwtJYiOov9gZwyL",
+            "presence": "optional"
+        },
+        {
+            "name": "kwrite",
+            "default-channel": "latest/stable",
+            "type": "app",
+            "id": "kDq3GCXn1MxmDShWY2WZCsJ0uV1mgGOa",
+            "presence": "optional"
         }
     ]
 }
