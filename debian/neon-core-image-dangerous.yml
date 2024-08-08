@@ -47,7 +47,7 @@ neon-core-image-dangerous:
     # Bring in the Notary Service tooling and ask it to publish for us please
     - git clone https://invent.kde.org/sysadmin/ci-notary-service
     - git clone https://invent.kde.org/sysadmin/ci-utilities
-    - python -u ci-notary-service/publishbuild.py --config ci-utilities/signing/publishbuild.ini --platform snap-image "$CI_PROJECT_DIR/.kde-ci-packages/"
+    - python3 -u ci-notary-service/publishbuild.py --config ci-utilities/signing/publishbuild.ini --platform snap-image "$CI_PROJECT_DIR/.kde-ci-packages/"
   after_script:
     # Cleanup local state
     - rm -rf ~/.snap/gnupg/
@@ -55,6 +55,5 @@ neon-core-image-dangerous:
     name: Signed image
     when: always
     paths:
-      - "*.tar.gz"
       - "task.log"
-    expire_in: 7 days
+    expire_in: 28 days
