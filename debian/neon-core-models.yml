@@ -33,8 +33,8 @@ neon_core_models:
     - snapcraft whoami
     # build the model with the project's tooling
     - echo re-generating models for $KDE_SNAP_MODULE_NAME ...
-    - make kde-neon-core-dangerous-amd64.model 2>&1 | tee task.log
-    - make kde-neon-core-signed-amd64.model 2>&1 | tee task.log
+    - make -B kde-neon-core-dangerous-amd64.model 2>&1 | tee task.log
+    - make -B kde-neon-core-signed-amd64.model 2>&1 | tee task.log
     # make the artifacts dir
     - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
     # copy the new models to the artifacts dir
