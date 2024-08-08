@@ -2,10 +2,8 @@ neon_core_image_dangerous:
   rules:
     # Only build the image on master
     #- if: '$CI_COMMIT_BRANCH == master'
-    # FIXME: let it build on other branches at first for tests.
-    # Prevent branch pipelines if an MR is open on the branch.
-    - if: $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_OPEN_MERGE_REQUESTS
-      when: never
+    # FIXME: let it build on MRs or manual triggers at first for testing.
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_PIPELINE_SOURCE == "web"'
     # Only let it run if the required variables are present
     # These are normally defined on protected branches on our normal repository but we do the logic this way to allow someone else to set this up in their fork if they want
     - if: '$SNAPCRAFT_STORE_CREDENTIALS == null || $SNAP_GPG_PRIVATE_KEY == null || $SNAP_GPG_OWNER_TRUST == null'
