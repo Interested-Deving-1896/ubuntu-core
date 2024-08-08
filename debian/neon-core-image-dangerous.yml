@@ -20,7 +20,7 @@ neon-core-image-dangerous:
     - rm -f task.log
     # get the missing plasma-desktop-session snap from the latest build...
     - mkdir workspace/ && cd workspace/
-    - wget "https://invent.kde.org/api/v4/projects/neon%2fsnap-packaging%2fplasma-desktop-session/jobs/artifacts/master/download?job=snap_snapcraft_lxd"
+    - wget -O Snap_artifacts.zip "https://invent.kde.org/api/v4/projects/neon%2fsnap-packaging%2fplasma-desktop-session/jobs/artifacts/master/download?job=snap_snapcraft_lxd"
     - unzip -e Snap_artifacts.zip
     - mv .kde-ci-packages/plasma-desktop-session*.snap $CI_PROJECT_DIR/local-snaps/plasma-desktop-session.snap
     - cd $CI_PROJECT_DIR
