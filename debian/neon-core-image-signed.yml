@@ -1,21 +1,39 @@
-include:
-  - project: sysadmin/ci-utilities
-    file:
-      - /gitlab-templates/blocks/snap-base.yml
-      - /gitlab-templates/blocks/workflow.yml
-
-neon_core_image_signed:
-  extends: .snap_base
-  inherit:
-    default: true
+neon-core-image-signed:
+  rules:
+    # Prevent branch pipelines if an MR is open on the branch.
+    - if: $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    # Only allow this job to run when the environment variables $KDE_NEON_CORE_IMAGE_KEY, $PRIVATE_KEY and $OWNER_TRUST are defined
+    # These are normally defined on protected branches on our normal repository but we do the logic this way to allow someone else to set this up in their fork if they want
+    - if: '$KDE_NEON_CORE_IMAGE_KEY != null && $PRIVATE_KEY != null && $OWNER_TRUST != null'
+  variables:
+    SNAPCRAFT_BUILD_ENVIRONMENT: "host"
+    SNAPCRAFT_MANAGED_MODE: "y"
+  tags:
+    - Snap
+  interruptible: true
+  needs:
+    - job: 'neon-core-models'
+      artifacts: true
   script:
-    # get the missing plasma-desktop-session snap from runner FS
-    - cp ../plasma-desktop-session.snap ./local-snaps/
+    # remove the task log file from the model signing that was artifacted...
+    - rm -f task.log
+    # get the missing plasma-desktop-session snap from the latest build...
+    - wget "https://invent.kde.org/api/v4/projects/neon/snap-packaging/plasma-desktop-session/jobs/artifacts/master/download?job=snap_snapcraft_lxd"
+    - mkdir workspace/ && cd workspace/
+    - unzip -e Snap_artifacts.zip
+    - mv .kde-ci-packages/plasma-desktop-session*.snap $CI_PROJECT_DIR/local-snaps/plasma-desktop-session.snap
+    - cd $CI_PROJECT_DIR
     # build the image with the project's tooling
     - echo building kde-neon-core in signed mode ...
     - make signed 2>&1 | tee task.log
-    # make the artifacts dir
-    - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
-    # copy the gun zipped tar to the artifacts dir
-    - cp -vf ./*.tar.gz  $CI_PROJECT_DIR/.kde-ci-packages/
-  interruptible: true
+  after_script:
+    # cleanup local state, including the GPG workspace and the Snapcraft authentication credentials
+    - git clean -dfx .
+  artifacts:
+    name: Signed image
+    when: always
+    paths:
+      - "*.tar.gz"
+      - "task.log"
+    expire_in: 7 days
