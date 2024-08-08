@@ -1,7 +1,7 @@
 type: model
-authority-id: 68znmZSFoknpbUZtBp0RTW9CGIN34tAQ
+authority-id: 2rsYZu6kqYVFsSejExu4YENdXQEO40Xb
 series: 16
-brand-id: 68znmZSFoknpbUZtBp0RTW9CGIN34tAQ
+brand-id: 2rsYZu6kqYVFsSejExu4YENdXQEO40Xb
 model: kde-neon-core-22-amd64
 architecture: amd64
 base: plasma-core22-desktop
@@ -100,16 +100,16 @@ snaps:
     name: kf6-core22
     type: app
 storage-safety: prefer-encrypted
-timestamp: 2024-08-07T15:11:51+00:00
-sign-key-sha3-384: zs7jdlmvmsrCLUY5JGZqEjUEtpmc-TUbW4t0xlUCRW3FmEMSc99AtETzxSBGuHPX
+timestamp: 2024-08-08T13:22:12+00:00
+sign-key-sha3-384: 3euluygUnLeUKLKaWsPve6O9rb9sMFrjTokZgbI74LfLAn-eyi0JwxOVdd1QQ_Vp
 
-AcLBcwQAAQoAHRYhBLkCjH7b6LJgrmzU0/OQSIyv3/oeBQJms463AAoJEPOQSIyv3/oeWBIP/3rC
-llBZJDtndOXRqNCi61R4wBoULZK4UallAlF9ohlf+nZvzv9QL1X6xYXju8JusXsbbRXwbP5asFlG
-WekAOl0VWpyyNIpMtC4TN/dUyh1pxmgFC4URYZF/xieCNmxrFFMqLFhhUE5wWoDHM250NxbUqWAz
-umrjz4O4rmPG7MaGzat5PjQ9wibHGWS9ohW/Z1cBXxMEHHf7qhTL1mh8KXo2jcSgO02odGOR7/q2
-/gWXJh5/h+rm9Is3KhiOz6U7T9XoHfHQfU3dPNZSw9DrnwE3ZTUh18xoUhxXOUPwTrNNBb0sLUSh
-z/HAotV3D1M2doaSN+t6UoJnPHRqo7Sjx1G+NH3DwCD/MfrSm7qfWBS1TPmb3gnQu9svogtzRBN8
-+v8yvzyz7e7eyL5ji05A+/NhJTHKIxtDlwToOYltSHt2XzuJvoWr60lFgXR8kmlOQwGxVt6UNj2r
-ehL/Ni0d6zLDeORBimgioz1N9CEqpyVZ64CZwwgiZdaprfuTSL+x0/83eVJjQxZK+Tm9alCi2KnX
-/c+KIGYZwo2sAY3QEt7nXFXzGrO8ND/Eory35x1IFXYCJHyo8s1Kn4fvv5j5gRPTT/xihMEEg3ic
-MW1Mgm07LRoUsuGwCTmmeSj8TnnbBpQCKRfaIeH0bF0R7KPxfhgbCiSuIfU2tSI6lXbjWwox
+AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJmtMaEAAoJEMXyZbcusBCQVrgP/2dx
+iuYWNYqAccPqu+oC6UsTFkV9Y1FiD7fZ6d4QnyDJ27FLHYoSQLlHoq0t9fsViCnoa/UUxf1XdP9o
+6PwQKnnGa8ebSUDdQy8CTfpGKUPenWMKynLiKa+ZXtRqJVSgXywuzdHdcK8XuTCjJF4LlRRSyOj2
+0OoyGH3TOKIhlXqXnWBvMPTe8unPY3ly16+V281TuQJcbmBwNo5c3tiKaGBoWBi5FpaINdGXFWAQ
+i8sWszytIz51K+zpsd39nZUaaVXJu9n+ahZfOWzFy4paw9A2OpIj6XSQAH/wiDtOiVb+A8xTPvgs
+KbmA1I1EKFjdkvoiwKanxtMDi1ny7Bu+RD1sbAuQuY5XJPljw4jQggD2le8BVCax+PtiOulcqGe4
+RrbFN+nxG+oy+j3Ce8KPvMBiSPbnpKVVOfzL161iJFgO1Aguz5S6WdplFm1afU9vvQXw13ai0fN1
+UL34HhgTT+zkY0DbGXLo37npo/MLExJjUbBSa8HbiDx2405glAWJkt9ERpESH2IZpvBPmWcC7gGu
+cL+4pM8pL2A4bWbeEVLqVCObOCKNk2uio0mCcmw7gmG4d+OvjYqG0lzDKPFzHBBfIkcvFwlSyMAj
+kh6bKyLFOG/4Z2u4simgwjnAs3sjiaqfIRYw7tV5MZ9mMa4tOD5DL+qgH++E4h6aJewsxZcx

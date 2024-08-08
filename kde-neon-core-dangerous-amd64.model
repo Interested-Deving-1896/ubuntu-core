@@ -1,7 +1,7 @@
 type: model
-authority-id: 68znmZSFoknpbUZtBp0RTW9CGIN34tAQ
+authority-id: 2rsYZu6kqYVFsSejExu4YENdXQEO40Xb
 series: 16
-brand-id: 68znmZSFoknpbUZtBp0RTW9CGIN34tAQ
+brand-id: 2rsYZu6kqYVFsSejExu4YENdXQEO40Xb
 model: kde-neon-core-22-amd64
 architecture: amd64
 base: plasma-core22-desktop
@@ -100,16 +100,16 @@ snaps:
     name: kf6-core22
     type: app
 storage-safety: prefer-encrypted
-timestamp: 2024-08-07T15:11:48+00:00
-sign-key-sha3-384: zs7jdlmvmsrCLUY5JGZqEjUEtpmc-TUbW4t0xlUCRW3FmEMSc99AtETzxSBGuHPX
+timestamp: 2024-08-08T13:22:09+00:00
+sign-key-sha3-384: 3euluygUnLeUKLKaWsPve6O9rb9sMFrjTokZgbI74LfLAn-eyi0JwxOVdd1QQ_Vp
 
-AcLBcwQAAQoAHRYhBLkCjH7b6LJgrmzU0/OQSIyv3/oeBQJms460AAoJEPOQSIyv3/oel2YP/31Q
-+z+wUJMQNhWln7xBndGgTDa3Ou0RW7Ovj3kOc+JPy8vlNQXSLqmqY4FSOxl/dudXhsqBK3KsnLWg
-vDRqiGp+e/uISSFUjdUznv5funCPqax+BG+9qyPDP5kDh6xc9QE1ANioPDjfHeZKhgLkYO7P1kAB
-0AAXL3dxebpfK3bMGxwJzNi48fARLoNWZWZ+44dXHgQ1/yT6NS5B13Lrmg6/uEpkBogkGj9idQ5t
-x3SDSOME/sl93A4UJCncfgMRRJe3LT0OLnIdw/fXj5O0fJbQcynA4+7ocT/7rJh6QU9DnWEZWp4G
-pBitMsMvY0ITvmhn+xAXLsMt4bTD4Qf71XyKr2oOqpc9wr4+HoNKX8qhHa9z9latm24YmKxzJJCi
-oAOEHk0NDwNgBikZ6DejxsPPH1umL+Fljk/+UWdL/BNZ00MsTVemZbgwq4jQAc9BNCrmsP7SKUIx
-Q9BsWVeSuYMCpjlw3git0qyOP80wXyM/dVn8bj+VOMK7GlPz3zHvuRlRyj7EEYgmE5Z3qnaHYLgh
-6bw97mCU0lQBVryErV1CtIVqq6YDjFCBw1vzj4eChH41Wn2WEBbXDj5FWMpDQbD8EHLtYG/N9OrE
-Pjb7wTzLFGwynsq9ERdU5Nzwm2SQmuXDU9IvZYJjnXTVU1LB48l94qwjS86d7OhMQTh6evvZ
+AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJmtMaBAAoJEMXyZbcusBCQrqIP/3lL
+BfSl8shiEAiu5/LdlGLqRGG/mA4JGfHE16pnwmTodDf8R5zOitIipo9tIpzQN+JcQ87hnWz21at8
+P8D7UDOMKOkUB3ddwwadzLhTir6rzBsEPfusqJPM2kveOtTv8dU6RBUFMnIESeflst2dz9CPaVah
+BHo/FX8vSliQS9a9OaobJ4Ffige3gXXMAG2g4qT74LqbJN7nZ/jk7z3NGutmcKBuSWfavR78/Ghj
+WCdLpGCh4F3oF/BqvQw3GK1vjBb9QQGloFd/ECmycmRZOXcJ+ZqVm+mcrPDrJ/dIpmthVwQ8VAXQ
+7geWXJyCNSSTmDa5moXHEj7TjYHVjesF/BxnZQeDmfJiyaEM90G4caNvdrIgVdKlFV65PlS9bLpw
+pUFlNGkGeqM+I6nMihSsnDj8z6j3L0YHuAcSuCXTbhjMRoN//NCM1Yuc3g0Lb+/XviPwqj8pTuvM
+cidDy9w93VebcRHCH8OH/Kh0o7oiDhgX5BSlPGZBx6g5hUKMHYB+55N7dsBH0bPmVKo6ViZyK+pA
+rrbyZaDF1ceHqykctZ13Cnvnz8ByyLNusNmdQ9wAaz+A6MnqnMH5BLSxUOsU0SJvRhR2+kMoMphK
+eMDZ/kFp8UuE8gELtz/7mdQWoWG2+/hKToypwFyO6F/0R4KQXwfmEVbxcz3PzoXiLxRo40+w
