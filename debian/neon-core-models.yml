@@ -1,61 +1,50 @@
-include:
-  - project: sysadmin/ci-utilities
-    file:
-      - /gitlab-templates/blocks/snap-base.yml
-      - /gitlab-templates/blocks/workflow.yml
-
 neon_core_models:
-  extends: .snap_base
-  inherit:
-    default: true
-  before_script:
-    # set bot identity and switch to the correct branch
-    - git config user.email "project_17308_bot_bfe008c722508de9710d4b73ec01c4a0@invent.kde.org"
-    - git config user.name "Neon Core-Bot"
-    - git checkout "$CI_COMMIT_REF_NAME"
+  rules:
+    # Only allow manual trigger on `models.*` branches
+    - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
+      when: manual
+    # Only let it run if the required variables are present
+    # These are normally defined on protected branches on our normal repository but we do the logic this way to allow someone else to set this up in their fork if they want
+    - if: '$SNAPCRAFT_STORE_CREDENTIALS == null || $SNAP_GPG_PRIVATE_KEY == null || $SNAP_GPG_OWNER_TRUST == null'
+      when: never
+  variables:
+    SNAPCRAFT_BUILD_ENVIRONMENT: "host"
+    SNAPCRAFT_MANAGED_MODE: "y"
+  tags:
+    - Snap
+  interruptible: true
   script:
-    # make sure there is a snap specific so gpg doesn't freak out
-    - mkdir -p -m 0700 ¬/.snap/gnupg/
-    - mkdir -p -m 0700 ¬/.snap/gnupg/private-keys-v1.d/
-    # export it as a env var for convenience
-    - export GNUPGHOME=¬/.snap/gnupg/
-    # test the env var
-    - echo $GNUPGHOME
-    # copy in the required exported login creds so that snapcraft whoami works
-    - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
+    # prepare the Snap specific GnuPG workspace
+    - rm -rf $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/private-keys-v1.d/
+    # export it as a env var so the import commands below work on it...
+    - export GNUPGHOME=$HOME/.snap/gnupg/
     # feed snap's gpg the required key
-    - echo $PRIVATE_KEY | base64 --decode | gpg --batch --import
+    - echo $SNAP_GPG_PRIVATE_KEY | base64 --decode | gpg --batch --import
     # make sure the key is trusted
-    - gpg --import-ownertrust <(echo "$OWNER_TRUST")
+    - gpg --import-ownertrust <(echo "$SNAP_GPG_OWNER_TRUST")
     # test the keys
     - gpg --list-keys
     # test the login
     - snapcraft whoami
+
     # build the model with the project's tooling
-    - echo re-generating models for $KDE_SNAP_MODULE_NAME ...
+    - echo re-generating models for $CI_PROJECT_NAME ...
     - make -B kde-neon-core-dangerous-amd64.model 2>&1 | tee task.log
     - make -B kde-neon-core-signed-amd64.model 2>&1 | tee task.log
+
     # make the artifacts dir
     - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
     # copy the new models to the artifacts dir
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
-    # add the model and commit
-    - git add -f ./kde-neon-core-dangerous-amd64.model ./kde-neon-core-signed-amd64.model
-    - git commit -m "Update models"
-    # push the new model to gitlab, and prevent the CI from triggering after a bot push
-    - git push https://project_17308_bot_bfe008c722508de9710d4b73ec01c4a0:$GIT_MODEL_COMMIT@invent.kde.org/neon/ubuntu-core.git $CI_COMMIT_REF_NAME -o ci.skip
-  interruptible: true
   after_script:
-    # cleanup local branches to avoid outdated states in future runs
-    - git checkout "$CI_COMMIT_SHA"
-    - git branch -D "$CI_COMMIT_REF_NAME"
-    # delete the gpg keyring
-    - rm -rf ¬/.snap/gnupg
-    # delete the snapcraft auth creds
-    - rm kde-neon-core-image-key
-  rules:  # Only allow manual trigger on `models.*` branches
-    - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
-      when: manual
-    - if: '$CI_COMMIT_BRANCH !~ /models\..*/'
-      when: never
-
+    # cleanup local state, including the GPG workspace and the Snapcraft authentication credentials
+    - rm -rf $HOME/.snap/gnupg/
+  artifacts:
+    name: Signed models
+    when: always
+    paths:
+      - "*.model"
+      - "task.log"
+    expire_in: 28 days
