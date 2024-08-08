@@ -2,6 +2,7 @@ neon_core_image_dangerous:
   rules:
     # Only build the image on master
     - if: '$CI_COMMIT_BRANCH == master'
+      when: always
     # Allow manually triggering the job on `models.*` branches
     - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
       when: manual
