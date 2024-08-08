@@ -40,6 +40,14 @@ neon-core-image-dangerous:
     # build the image with the project's tooling
     - echo building kde-neon-core in dangerous mode ...
     - make dangerous 2>&1 | tee task.log
+
+    # Create a folder to publish the files...
+    - mkdir -p .kde-ci-packages/
+    - mv *.tar.gz .kde-ci-packages/
+    # Bring in the Notary Service tooling and ask it to publish for us please
+    - git clone https://invent.kde.org/sysadmin/ci-notary-service
+    - git clone https://invent.kde.org/sysadmin/ci-utilities
+    - python -u ci-notary-service/publishbuild.py --config ci-utilities/signing/publishbuild.ini --platform snap-image "$CI_PROJECT_DIR/.kde-ci-packages/"
   after_script:
     # Cleanup local state
     - rm -rf ~/.snap/gnupg/
