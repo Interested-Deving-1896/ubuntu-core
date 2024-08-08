@@ -13,20 +13,19 @@ neon-core-models:
     - Snap
   interruptible: true
   script:
-    # make sure there is a snap specific GPG workspace so gpg doesn't freak out
-    - mkdir -p -m 0700 $CI_PROJECT_DIR/.snap/gnupg/
-    - mkdir -p -m 0700 $CI_PROJECT_DIR/.snap/gnupg/private-keys-v1.d/
-    # export it as a env var for convenience
-    - export GNUPGHOME=$CI_PROJECT_DIR/.snap/gnupg/
+    # Prepare the Snap specific GnuPG workspace
+    - rm -rf $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/private-keys-v1.d/
+    # export it as a env var so the import commands below work on it...
+    - export GNUPGHOME=$HOME/.snap/gnupg/
     # feed snap's gpg the required key
-    - echo $PRIVATE_KEY | base64 --decode | gpg --batch --import
+    - echo $SNAP_GPG_PRIVATE_KEY | base64 --decode | gpg --batch --import
     # make sure the key is trusted
-    - gpg --import-ownertrust <(echo "$OWNER_TRUST")
+    - gpg --import-ownertrust <(echo "$SNAP_GPG_OWNER_TRUST")
     # test the keys
     - gpg --list-keys
 
-    # copy in the required exported login creds so that snapcraft whoami works
-    - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
     # test the login
     - snapcraft whoami
 
@@ -42,6 +41,7 @@ neon-core-models:
   after_script:
     # cleanup local state, including the GPG workspace and the Snapcraft authentication credentials
     - git clean -dfx .
+    - rm -rf ~/.snap/gnupg/
   artifacts:
     name: Signed models
     when: always

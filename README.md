@@ -22,7 +22,7 @@ This also requires having registered keys, as described in the first two steps o
 
 https://ubuntu.com/core/docs/sign-model-assertion
 
-The Makefile assumes your key to be created with the name `kde-neon-core-image-key`. Also, no build can occur if you're not authenticated in your Ubuntu One account with `snapcraft`. To sanity check this, running `snapcraft whoami` will tell you under which account you are authenticated.
+The Makefile assumes your key to be created with the name `kde-snapcraft-key`. Also, no build can occur if you're not authenticated in your Ubuntu One account with `snapcraft`. To sanity check this, running `snapcraft whoami` will tell you under which account you are authenticated.
 
 #### Generating models with the CI
 
