@@ -42,7 +42,6 @@ neon-core-image-dangerous:
     - make dangerous 2>&1 | tee task.log
   after_script:
     # Cleanup local state
-    - git clean -dfx .
     - rm -rf ~/.snap/gnupg/
   artifacts:
     name: Signed image

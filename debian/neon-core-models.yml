@@ -40,7 +40,6 @@ neon-core-models:
     - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
   after_script:
     # cleanup local state, including the GPG workspace and the Snapcraft authentication credentials
-    - git clean -dfx .
     - rm -rf ~/.snap/gnupg/
   artifacts:
     name: Signed models
