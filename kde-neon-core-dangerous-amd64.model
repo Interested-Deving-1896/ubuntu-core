@@ -99,17 +99,41 @@ snaps:
     id: DlAIkaMJ1XMsnQRKcn0EjE2nc1S37X4r
     name: kf6-core22
     type: app
+  -
+    default-channel: latest/stable
+    id: SfUqQ280Y4bJ0k64qtBKTTXq5ml46tvQ
+    name: okular
+    presence: optional
+    type: app
+  -
+    default-channel: latest/stable
+    id: exqoWOIGvIl1u4gzKvpjLCZ9cvI6UTbP
+    name: gwenview
+    presence: optional
+    type: app
+  -
+    default-channel: latest/stable
+    id: CwdMAZoScOw1AcaGwtwtJYiOov9gZwyL
+    name: elisa
+    presence: optional
+    type: app
+  -
+    default-channel: latest/stable
+    id: kDq3GCXn1MxmDShWY2WZCsJ0uV1mgGOa
+    name: kwrite
+    presence: optional
+    type: app
 storage-safety: prefer-encrypted
-timestamp: 2024-08-08T13:22:09+00:00
+timestamp: 2024-08-09T09:29:51+00:00
 sign-key-sha3-384: 3euluygUnLeUKLKaWsPve6O9rb9sMFrjTokZgbI74LfLAn-eyi0JwxOVdd1QQ_Vp
 
-AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJmtMaBAAoJEMXyZbcusBCQrqIP/3lL
-BfSl8shiEAiu5/LdlGLqRGG/mA4JGfHE16pnwmTodDf8R5zOitIipo9tIpzQN+JcQ87hnWz21at8
-P8D7UDOMKOkUB3ddwwadzLhTir6rzBsEPfusqJPM2kveOtTv8dU6RBUFMnIESeflst2dz9CPaVah
-BHo/FX8vSliQS9a9OaobJ4Ffige3gXXMAG2g4qT74LqbJN7nZ/jk7z3NGutmcKBuSWfavR78/Ghj
-WCdLpGCh4F3oF/BqvQw3GK1vjBb9QQGloFd/ECmycmRZOXcJ+ZqVm+mcrPDrJ/dIpmthVwQ8VAXQ
-7geWXJyCNSSTmDa5moXHEj7TjYHVjesF/BxnZQeDmfJiyaEM90G4caNvdrIgVdKlFV65PlS9bLpw
-pUFlNGkGeqM+I6nMihSsnDj8z6j3L0YHuAcSuCXTbhjMRoN//NCM1Yuc3g0Lb+/XviPwqj8pTuvM
-cidDy9w93VebcRHCH8OH/Kh0o7oiDhgX5BSlPGZBx6g5hUKMHYB+55N7dsBH0bPmVKo6ViZyK+pA
-rrbyZaDF1ceHqykctZ13Cnvnz8ByyLNusNmdQ9wAaz+A6MnqnMH5BLSxUOsU0SJvRhR2+kMoMphK
-eMDZ/kFp8UuE8gELtz/7mdQWoWG2+/hKToypwFyO6F/0R4KQXwfmEVbxcz3PzoXiLxRo40+w
+AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJmteGPAAoJEMXyZbcusBCQdTsQALei
+BPnfvofYC54yJkpoZy9A1l1KoRoYrKcyCVX7eZFUdNO07uPDAX6TLEqE2nvJWE400R3tlEmORyMY
+sr2AWT0us+GHS9tItUTkh6vuq/mlYnt+TiUG30Yb7R/m0FcPcAvS3W3ZdS6HE1B+GmD43R4cI6Yh
+tcpQMXPIYr40ddDvTNJjwEeSQ8BguVKEyZK4wLbmnRyFMNRaEb2g+F0OdQXicEBFn993tle/Mvpl
+Ynko+tm68RihkdF8+SYh87/kqoEnWsPTzylwu+7ZVuYgNMztSh2EE0NpWPu7/bgPbThBT7vyY/qh
+F6JvTqNRyOzWW6vqH2ib2PNbPYPaadEc7BIbDludNJuI+LWviyg5K/nn4ssxsQGfE30JhJfXjaVw
+BM9q31mxhwgEaBpKB5gDWNOxQR8EbDpqXbuypnXoQtY8Dfeg6oIaSoGUxfA513PMo2oALH9iOXuk
+KQV57LvlzOlRcz+LNNJuScSIhz8XgfZOjUCDSdC2kiBBVdW96tfwNYCWWiGl1Z4VuBCoUjU6+SUO
+OMSBwyWFzsfatcIoEaBIevMHRfavgpz+0FuLgBPD+bjX2Wpfr6h8XQW2GL11ueh2wWesVsCrSo/w
+mJagAvHjP3pXPZTcfGFlnDM84tWCFV0dkmCd+lUAAV1bLMd4UUdXTl/PPOpam27iBcCW9hkZ
