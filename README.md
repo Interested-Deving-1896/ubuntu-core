@@ -18,18 +18,6 @@ Your branch needs to be protected, and its name needs to match the `models.*` pa
 
 Once the job is complete, it will upload both `dangerous` and `signed` versions of the model as pipeline artefacts. You can then download them, test them locally, and commit then.
 
-For faster testing, you can also manually generate the models using your own credentials with `make <model-file>`. This requires having an Ubuntu One account as described here:
-
-https://ubuntu.com/core/docs/create-ubuntu-one
-
-This also requires having registered keys, as described in the first two steps of this page:
-
-https://ubuntu.com/core/docs/sign-model-assertion
-
-The Makefile assumes your key to be created with the name `kde-neon-core-image-key`. Also, no build can occur if you're not authenticated in your Ubuntu One account with `snapcraft`. To sanity check this, running `snapcraft whoami` will tell you under which account you are authenticated.
-
-Make sure to only push models that were signed by the CI, as models signed with your own credentials will not have the same authority ID as other build dependencies, which will prevent the image from being built by the CI.
-
 ### dangerous vs signed
 
 Whatever image variant you build, despite what the name seems to imply, some signature will occur. So they both require a valid key as described in the previous section.
