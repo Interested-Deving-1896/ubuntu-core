@@ -1,0 +1,53 @@
+neon_core_models:
+  rules:
+    # Only allow manual trigger on `models.*` branches
+    - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
+      when: manual
+    # Only let it run if the required variables are present
+    # These are normally defined on protected branches on our normal repository but we do the logic this way to allow someone else to set this up in their fork if they want
+    - if: '$SNAPCRAFT_STORE_CREDENTIALS == null || $SNAP_GPG_PRIVATE_KEY == null || $SNAP_GPG_OWNER_TRUST == null'
+      when: never
+  variables:
+    SNAPCRAFT_BUILD_ENVIRONMENT: "host"
+    SNAPCRAFT_MANAGED_MODE: "y"
+  tags:
+    - Snap
+  interruptible: true
+  script:
+    # prepare the Snap specific GnuPG workspace
+    - rm -rf $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/private-keys-v1.d/
+    # export it as a env var so the import commands below work on it...
+    - export GNUPGHOME=$HOME/.snap/gnupg/
+    # feed snap's gpg the required key
+    - echo $SNAP_GPG_PRIVATE_KEY | base64 --decode | gpg --batch --import
+    # make sure the key is trusted
+    - gpg --import-ownertrust <(echo "$SNAP_GPG_OWNER_TRUST")
+    # test the keys
+    - gpg --list-keys
+    # test the login
+    - snapcraft whoami
+
+    # change the Makefile to use the correct key name for signing models
+    - sed -i 's/kde-neon-core-image-key/kde-snapcraft-key/g' Makefile
+
+    # build the model with the project's tooling
+    - echo re-generating models for $CI_PROJECT_NAME ...
+    - make -B kde-neon-core-dangerous-amd64.model 2>&1 | tee task.log
+    - make -B kde-neon-core-signed-amd64.model 2>&1 | tee task.log
+
+    # make the artifacts dir
+    - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
+    # copy the new models to the artifacts dir
+    - cp -vf ./*.model  $CI_PROJECT_DIR/.kde-ci-packages/
+  after_script:
+    # cleanup local state, including the GPG workspace and the Snapcraft authentication credentials
+    - rm -rf $HOME/.snap/gnupg/
+  artifacts:
+    name: Signed models
+    when: always
+    paths:
+      - "*.model"
+      - "task.log"
+    expire_in: 28 days

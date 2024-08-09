@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: CC0-1.0
 
 include:
-  - project: sysadmin/ci-utilities
-    file:
-      - /gitlab-templates/snap-image-dangerous.yml
-#      - /gitlab-templates/snap-image-signed.yml
+  - local: debian/neon-core-models.yml
+  - local: debian/neon-core-image-dangerous.yml
+  #- local: debian/neon-core-image-signed.yml

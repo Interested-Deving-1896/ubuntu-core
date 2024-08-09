@@ -4,20 +4,21 @@ dangerous: kde-neon-core-dangerous-amd64.tar.gz
 
 signed: kde-neon-core-signed-amd64.tar.gz
 
-kde-neon-core-signed-amd64.json: kde-neon-core-amd64.json
-	./finalize-json.sh signed $< $@
-
-kde-neon-core-dangerous-amd64.json: kde-neon-core-amd64.json
-	./finalize-json.sh dangerous $< $@
-
 kde-neon-core-signed-amd64.snap-list: kde-neon-core-amd64.json
 	./create-snap-list.sh signed $< $@
 
 kde-neon-core-dangerous-amd64.snap-list: kde-neon-core-amd64.json
 	./create-snap-list.sh dangerous $< $@
 
-%.model: %.json
-	snap sign -k kde-neon-core-image-key $< > $@
+kde-neon-core-signed-amd64.model: kde-neon-core-amd64.json
+	./finalize-json.sh signed kde-neon-core-amd64.json model-in.json
+	snap sign -k kde-neon-core-image-key model-in.json > $@
+	rm model-in.json
+
+kde-neon-core-dangerous-amd64.model: kde-neon-core-amd64.json
+	./finalize-json.sh dangerous kde-neon-core-amd64.json model-in.json
+	snap sign -k kde-neon-core-image-key model-in.json > $@
+	rm model-in.json
 
 %.img: %.model %.snap-list
 	$(eval SNAPS = $(shell cat $(basename $@).snap-list))
@@ -30,6 +31,6 @@ kde-neon-core-dangerous-amd64.snap-list: kde-neon-core-amd64.json
 
 clean:
 	rm -rf *.model.build
-	rm -f *.snap-list *.model *.img *.tar.gz *-signed-*.json *-dangerous-*.json
+	rm -f *.snap-list *.img *.tar.gz *-signed-*.json *-dangerous-*.json
 
 .PHONY: all clean dangerous signed
