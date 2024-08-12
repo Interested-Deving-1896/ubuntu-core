@@ -31,6 +31,11 @@ neon_core_image_dangerous:
     # test the keys
     - gpg --list-keys
 
+    # copy in the required exported login creds so that snapcraft whoami works
+    - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
+    # test the login
+    - snapcraft whoami
+
     # remove the task log file from the model signing that was artifacted...
     - rm -f task.log
 
