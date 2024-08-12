@@ -26,7 +26,7 @@ neon_core_image_dangerous:
     - export GNUPGHOME=$HOME/.snap/gnupg/
 
     # copy in the required exported login creds so that snapcraft whoami works
-    - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
+    #- echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
     # test the login
     - snapcraft whoami
 
