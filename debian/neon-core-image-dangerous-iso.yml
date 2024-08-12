@@ -3,7 +3,7 @@ neon_core_image_dangerous:
     # Allow manual trigger on `models.*` branches
     #- if: '$CI_COMMIT_BRANCH =~ /models\..*/'
     #  when: manual
-    - if: '$CI_COMMIT_BRANCH =~ /neon/*/'
+    - if: '$CI_COMMIT_BRANCH =~ /neon/.*/'
       when: manual
     # Otherwise, only build the image+iso on master
     #- if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
