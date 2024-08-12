@@ -29,23 +29,23 @@ CHROOT=$PWD/output/mnt
 
 mkdir -p $CHROOT
 # since we know that the partition with the data is the third one, we use awk to extract the start sector
-sudo mount -o loop,offset=$(expr 512 \* $(fdisk -l ${INSTALLER_IMAGE} |grep img3 | awk '{print $2}')) ${INSTALLER_IMAGE} $CHROOT
+mount -o loop,offset=$(expr 512 \* $(fdisk -l ${INSTALLER_IMAGE} |grep img3 | awk '{print $2}')) ${INSTALLER_IMAGE} $CHROOT
 
 # we prepare the chroot environment to ensure that everything works inside..
-sudo mount -o bind /dev ${CHROOT}/dev
-sudo mount -o bind /dev/pts ${CHROOT}/dev/pts
-sudo mount -o bind /proc ${CHROOT}/proc
-sudo mount -o bind /sys ${CHROOT}/sys
-sudo mount -o bind /run ${CHROOT}/run
+mount -o bind /dev ${CHROOT}/dev
+mount -o bind /dev/pts ${CHROOT}/dev/pts
+mount -o bind /proc ${CHROOT}/proc
+mount -o bind /sys ${CHROOT}/sys
+mount -o bind /run ${CHROOT}/run
 # install the required packages
-sudo chroot ${CHROOT} apt install -y casper
+chroot ${CHROOT} apt install -y casper
 # and, if needed, open a bash shell to do manual checks
 # chroot ${CHROOT} /bin/bash
-sudo umount ${CHROOT}/run
-sudo umount ${CHROOT}/sys
-sudo umount ${CHROOT}/proc
-sudo umount ${CHROOT}/dev/pts
-sudo umount ${CHROOT}/dev
+umount ${CHROOT}/run
+umount ${CHROOT}/sys
+umount ${CHROOT}/proc
+umount ${CHROOT}/dev/pts
+umount ${CHROOT}/dev
 
 rm -rf $PWD/image2
 
@@ -53,10 +53,10 @@ mkdir -p $PWD/image2/casper
 mkdir -p $PWD/image2/isolinux
 mkdir -p $PWD/image2/install
 
-sudo mv $CHROOT/cdrom/casper/* $PWD/image2/casper/
+mv $CHROOT/cdrom/casper/* $PWD/image2/casper/
 
-sudo cp $CHROOT/boot/vmlinuz-**-**-generic image2/casper/vmlinuz
-sudo cp $CHROOT/boot/initrd.img-**-**-generic image2/casper/initrd
+cp $CHROOT/boot/vmlinuz-**-**-generic image2/casper/vmlinuz
+cp $CHROOT/boot/initrd.img-**-**-generic image2/casper/initrd
 
 touch image2/ubuntu
 
@@ -75,12 +75,12 @@ menuentry "Install Ubuntu Core Desktop" {
 }
 EOF
 
-sudo mksquashfs $CHROOT image2/casper/filesystem.squashfs
+mksquashfs $CHROOT image2/casper/filesystem.squashfs
 
-printf $(sudo du -sx --block-size=1 $CHROOT | cut -f1) > image2/casper/filesystem.size
+printf $(du -sx --block-size=1 $CHROOT | cut -f1) > image2/casper/filesystem.size
 
 # we are done with the original disk image
-sudo umount ${CHROOT}
+umount ${CHROOT}
 rmdir ${CHROOT}
 
 cd $PWD/image2
@@ -95,7 +95,7 @@ grub-mkstandalone \
 (
    cd isolinux && \
    dd if=/dev/zero of=efiboot.img bs=1M count=10 && \
-   sudo mkfs.vfat efiboot.img && \
+   mkfs.vfat efiboot.img && \
    LC_CTYPE=C mmd -i efiboot.img efi efi/boot && \
    LC_CTYPE=C mcopy -i efiboot.img ./bootx64.efi ::efi/boot/
 )
@@ -111,9 +111,9 @@ grub-mkstandalone \
 
 cat /usr/lib/grub/i386-pc/cdboot.img isolinux/core.img > isolinux/bios.img
 
-sudo /bin/bash -c "(find . -type f -print0 | xargs -0 md5sum | grep -v "\./md5sum.txt" > md5sum.txt)"
+/bin/bash -c "(find . -type f -print0 | xargs -0 md5sum | grep -v "\./md5sum.txt" > md5sum.txt)"
 
-sudo xorriso \
+xorriso \
    -as mkisofs \
    -iso-level 3 \
    -full-iso9660-filenames \
