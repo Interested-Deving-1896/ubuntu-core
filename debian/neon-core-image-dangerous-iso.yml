@@ -1,0 +1,46 @@
+neon_core_image_dangerous:
+  rules:
+    # Allow manual trigger on `models.*` branches
+    - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
+      when: manual
+    # Otherwise, only build the image+iso on master
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: always
+    # Only let it run if the required variables are present
+    # These are normally defined on protected branches on our normal repository but we do the logic this way to allow someone else to set this up in their fork if they want
+    - if: '$SNAPCRAFT_STORE_CREDENTIALS == null || $SNAP_GPG_PRIVATE_KEY == null || $SNAP_GPG_OWNER_TRUST == null'
+      when: never
+  variables:
+    SNAPCRAFT_BUILD_ENVIRONMENT: "host"
+    SNAPCRAFT_MANAGED_MODE: "y"
+  tags:
+    - Snap
+  interruptible: true
+  script:
+    # get the missing plasma-desktop-session snap from the latest build...
+    - mkdir workspace/ && cd workspace/
+    - wget -O Snap_artifacts.zip "https://invent.kde.org/api/v4/projects/neon%2fsnap-packaging%2fplasma-desktop-session/jobs/artifacts/master/download?job=snap_snapcraft_lxd"
+    - unzip -e Snap_artifacts.zip
+    - mv .kde-ci-packages/plasma-desktop-session*.snap $CI_PROJECT_DIR/local-snaps/plasma-desktop-session.snap
+    - cd $CI_PROJECT_DIR
+
+    # build the image with the project's tooling
+    - echo building kde-neon-core in dangerous mode ...
+    - make dangerous-iso 2>&1 | tee task.log
+
+    # Create a folder to publish the files...
+    - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
+    - mv -vf *.tar.gz $CI_PROJECT_DIR/.kde-ci-packages/
+    # Bring in the Notary Service tooling and ask it to publish for us please
+    #- git clone https://invent.kde.org/sysadmin/ci-notary-service
+    #- git clone https://invent.kde.org/sysadmin/ci-utilities
+    #- python3 -u ci-notary-service/publishbuild.py --config ci-utilities/signing/publishbuild.ini --platform snap-image "$CI_PROJECT_DIR/.kde-ci-packages/"
+  after_script:
+    # Cleanup local state
+    - git clean -dfx .
+  artifacts:
+    name: Dangerous image iso
+    when: always
+    paths:
+      - "task.log"
+    expire_in: 28 days
