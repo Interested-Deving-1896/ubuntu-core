@@ -1,12 +1,8 @@
 all: dangerous signed
 
-dangerous: kde-neon-core-dangerous-amd64.tar.gz
+dangerous: kde-neon-core-dangerous-amd64.iso
 
-dangerous-iso: kde-neon-core-dangerous-amd64.iso
-
-signed: kde-neon-core-signed-amd64.tar.gz
-
-signed-iso: kde-neon-core-signed-amd64.iso
+signed: kde-neon-core-signed-amd64.iso
 
 kde-neon-core-signed-amd64.snap-list: kde-neon-core-amd64.json
 	./create-snap-list.sh signed $< $@

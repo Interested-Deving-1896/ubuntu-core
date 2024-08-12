@@ -20,7 +20,7 @@ neon_core_image_signed:
 
     # Create a folder to publish the files...
     - mkdir -p $CI_PROJECT_DIR/.kde-ci-packages/
-    - mv -vf *.tar.gz $CI_PROJECT_DIR/.kde-ci-packages/
+    - mv -vf *.img.xz *.iso $CI_PROJECT_DIR/.kde-ci-packages/
     # Bring in the Notary Service tooling and ask it to publish for us please
     - git clone https://invent.kde.org/sysadmin/ci-notary-service
     - git clone https://invent.kde.org/sysadmin/ci-utilities
