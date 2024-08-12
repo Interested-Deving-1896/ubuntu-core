@@ -1,20 +1,35 @@
 #!/bin/sh
 
-# Process obtained from https://itnext.io/how-to-create-a-custom-ubuntu-live-from-scratch-dd3b3f213f81
+set -ex
 
-DISK_IMAGE=$PWD/ubuntu-core-desktop-22-amd64.img
-if [ -e "$1" ]; then
-  DISK_IMAGE=$PWD/$1
+SCRIPT_PATH=`readlink -f $0`
+SCRIPT_DIR=`dirname $SCRIPT_PATH`
+
+cd $SCRIPT_DIR
+
+if [ -f "$1" ]; then
+  CORE_IMAGE=$1
 else
-   echo "Provide classic img file as first parameter"
+   echo "Provide Ubuntu Core compressed img file as first parameter"
+   exit 1
 fi
+
+IMAGE_SIZE=`stat -c%s $CORE_IMAGE`
+
+cat image/install-sources.yaml.in |sed "s,@SIZE@,$IMAGE_SIZE,g" > image/install-sources.yaml
+cat image/core-desktop.yaml.in |sed "s,@PATH@,$CORE_IMAGE,g" > image/core-desktop.yaml
+ubuntu-image classic --debug -O output/ image/core-desktop.yaml
+
+INSTALLER_IMAGE=$PWD/output/plasma-core-desktop-installer-amd64.img
+
+# Process obtained from https://itnext.io/how-to-create-a-custom-ubuntu-live-from-scratch-dd3b3f213f81
 
 # where to mount the disk image
 CHROOT=$PWD/output/mnt
 
 mkdir -p $CHROOT
 # since we know that the partition with the data is the third one, we use awk to extract the start sector
-sudo mount -o loop,offset=$(expr 512 \* $(fdisk -l ${DISK_IMAGE} |grep img3 | awk '{print $2}')) ${DISK_IMAGE} $CHROOT
+sudo mount -o loop,offset=$(expr 512 \* $(fdisk -l ${INSTALLER_IMAGE} |grep img3 | awk '{print $2}')) ${INSTALLER_IMAGE} $CHROOT
 
 # we prepare the chroot environment to ensure that everything works inside..
 sudo mount -o bind /dev ${CHROOT}/dev
@@ -103,7 +118,7 @@ sudo xorriso \
    -iso-level 3 \
    -full-iso9660-filenames \
    -volid "Ubuntu Core Desktop" \
-   -output ${DISK_IMAGE%.*}.iso \
+   -output "${CORE_IMAGE%.*.*}.iso" \
    -eltorito-boot boot/grub/bios.img \
       -no-emul-boot \
       -boot-load-size 4 \
@@ -122,4 +137,3 @@ sudo xorriso \
       "/boot/grub/bios.img=isolinux/bios.img" \
       "."
 
-cd ..

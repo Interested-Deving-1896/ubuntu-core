@@ -37,18 +37,11 @@ kde-neon-core-dangerous-amd64.model: kde-neon-core-amd64.json
 	echo "generate xz file"
 	xz --force --threads=0 -vv $<
 
-%.installer.img: %.img.xz
-	-rm -rf output/
-	cat image/install-sources.yaml.in |sed "s/@SIZE@/$(shell stat -c%s $<)/g" > image/install-sources.yaml
-	cat image/core-desktop.yaml.in |sed "s/@PATH@/$</g" > image/core-desktop.yaml
-	sudo ubuntu-image classic --debug -O output/ image/core-desktop.yaml
-	mv output/plasma-core-desktop-22-amd64.img $@
-
-%.iso: %.installer.img
-	sudo ./create_iso.sh $<
+%.iso: %.img.xz
+	./create-iso.sh $<
 
 clean:
 	rm -rf *.model.build image2
-	rm -f *.snap-list *.img *.tar.gz *-signed-*.json *-dangerous-*.json
+	rm -f *.snap-list *.img *.img.xz *.tar.gz *.iso *-signed-*.json *-dangerous-*.json
 
 .PHONY: all clean dangerous signed

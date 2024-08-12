@@ -78,6 +78,6 @@ customization:
 artifacts:
   img:
     -
-      name: plasma-core-desktop-22-amd64.img
+      name: plasma-core-desktop-installer-amd64.img
   manifest:
     name: plasma-core-desktop-pc-amd64.manifest
