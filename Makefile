@@ -8,11 +8,15 @@ signed: kde-neon-core-signed-amd64.tar.gz
 
 signed-iso: kde-neon-core-signed-amd64.iso
 
-kde-neon-core-signed-amd64.json: kde-neon-core-amd64.json
-	./finalize-json.sh signed $< $@
+kde-neon-core-signed-amd64.model: kde-neon-core-amd64.json
+	./finalize-json.sh signed kde-neon-core-amd64.json model-in.json
+	snap sign -k kde-snapcraft-key model-in.json > $@
+	rm model-in.json
 
-kde-neon-core-dangerous-amd64.json: kde-neon-core-amd64.json
-	./finalize-json.sh dangerous $< $@
+kde-neon-core-dangerous-amd64.model: kde-neon-core-amd64.json
+	./finalize-json.sh dangerous kde-neon-core-amd64.json model-in.json
+	snap sign -k kde-snapcraft-key model-in.json > $@
+	rm model-in.json
 
 kde-neon-core-signed-amd64.snap-list: kde-neon-core-amd64.json
 	./create-snap-list.sh signed $< $@
