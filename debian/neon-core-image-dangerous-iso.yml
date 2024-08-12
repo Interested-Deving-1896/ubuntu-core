@@ -4,8 +4,8 @@ neon_core_image_dangerous:
     - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
       when: manual
     # Otherwise, only build the image+iso on master
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: always
+    #- if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    #  when: always
     # Only let it run if the required variables are present
     # These are normally defined on protected branches on our normal repository but we do the logic this way to allow someone else to set this up in their fork if they want
     - if: '$SNAPCRAFT_STORE_CREDENTIALS == null || $SNAP_GPG_PRIVATE_KEY == null || $SNAP_GPG_OWNER_TRUST == null'
