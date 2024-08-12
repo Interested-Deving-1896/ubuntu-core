@@ -17,6 +17,23 @@ neon_core_image_dangerous:
     - Snap
   interruptible: true
   script:
+  script:
+    # Prepare the Snap specific GnuPG workspace
+    - rm -rf $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/
+    - mkdir -p -m 0700 $HOME/.snap/gnupg/private-keys-v1.d/
+    # export it as a env var so the import commands below work on it...
+    - export GNUPGHOME=$HOME/.snap/gnupg/
+    # feed snap's gpg the required key
+    - echo $SNAP_GPG_PRIVATE_KEY | base64 --decode | gpg --batch --import
+    # make sure the key is trusted
+    - gpg --import-ownertrust <(echo "$SNAP_GPG_OWNER_TRUST")
+    # test the keys
+    - gpg --list-keys
+
+    # remove the task log file from the model signing that was artifacted...
+    - rm -f task.log
+
     # get the missing plasma-desktop-session snap from the latest build...
     - mkdir workspace/ && cd workspace/
     - wget -O Snap_artifacts.zip "https://invent.kde.org/api/v4/projects/neon%2fsnap-packaging%2fplasma-desktop-session/jobs/artifacts/master/download?job=snap_snapcraft_lxd"
