@@ -24,6 +24,12 @@ neon_core_image_dangerous:
     - mkdir -p -m 0700 $HOME/.snap/gnupg/private-keys-v1.d/
     # export it as a env var so the import commands below work on it...
     - export GNUPGHOME=$HOME/.snap/gnupg/
+
+    # copy in the required exported login creds so that snapcraft whoami works
+    - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
+    # test the login
+    - snapcraft whoami
+
     # feed snap's gpg the required key
     - echo $SNAP_GPG_PRIVATE_KEY | base64 --decode | gpg --batch --import
     # make sure the key is trusted
@@ -31,10 +37,7 @@ neon_core_image_dangerous:
     # test the keys
     - gpg --list-keys
 
-    # copy in the required exported login creds so that snapcraft whoami works
-    - echo $KDE_NEON_CORE_IMAGE_KEY > kde-neon-core-image-key
-    # test the login
-    - snapcraft whoami
+   
 
     # remove the task log file from the model signing that was artifacted...
     - rm -f task.log
