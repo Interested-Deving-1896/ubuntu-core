@@ -24,14 +24,26 @@ lxc_exec() {
    lxc exec $LXC_INSTANCE -- $*
 }
 
+update_lxc_process_count() {
+   LXC_PROCESS_COUNT=`lxc info kde-neon-core-iso-builder|grep Processes|awk '{print $2}'`
+}
+
 lxc init --vm ubuntu:24.04 $LXC_INSTANCE \
    -c limits.cpu=4 \
    -c limits.memory=8GiB \
    -d root,size=32GiB
 lxc start $LXC_INSTANCE
 
-# Give a chance to the VM to finish booting
-sleep 30
+# Wait for the VM to finish booting
+set +x
+echo "Waiting for VM boot to end"
+update_lxc_process_count
+while [ "$LXC_PROCESS_COUNT" -lt 0 ] ; do
+   sleep 5
+   update_lxc_process_count
+done
+echo "VM ready, process count: $LXC_PROCESS_COUNT"
+set -x
 
 for i in "create-iso-impl.sh" "image" $1 ; do
    lxc file push -p -r $SCRIPT_DIR/$i $LXC_INSTANCE$LXC_PROJECT_ROOT
