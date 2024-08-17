@@ -2,7 +2,7 @@
 
 set -e
 
-find_ovmf_bin() {
+find_ovmf_code() {
     for f in \
         "/usr/share/OVMF/OVMF_CODE.fd" \
         "/usr/share/ovmf/x64/OVMF_CODE.fd" \
@@ -17,18 +17,35 @@ find_ovmf_bin() {
     return 1
 }
 
+find_ovmf_vars() {
+    for f in \
+        "/usr/share/OVMF/OVMF_VARS.fd" \
+        "/usr/share/ovmf/x64/OVMF_VARS.fd" \
+        "/usr/share/qemu/ovmf-x86_64-vars.bin" \
+    ; do
+        if [ -f "$f" ]; then
+            echo $f
+            return 0
+        fi
+    done
+    echo "Didn't find any usable OVMF vars file!" 1>&2;
+    return 1
+}
+
 SCRIPT_PATH=`readlink -f $0`
 SCRIPT_DIR=`dirname $SCRIPT_PATH`
 
 IMAGE=$1
-OVMF_BIN=`find_ovmf_bin`
+OVMF_CODE=`find_ovmf_code`
+OVMF_VARS=`find_ovmf_vars`
 
 echo "If you need to access local-snaps from the guest run: mount -t 9p host_share /mnt"
 qemu-system-x86_64 -smp 4 -m 8192 -machine accel=kvm \
       -display gtk,gl=on \
       -net nic,model=virtio \
       -net user,hostfwd=tcp::8022-:22 \
-      -drive file=$OVMF_BIN,if=pflash,format=raw,unit=0,readonly=on \
+      -drive file=$OVMF_CODE,if=pflash,format=raw,unit=0,readonly=on \
+      -drive file=$OVMF_VARS,if=pflash,format=raw,unit=1,readonly=on \
       -drive file=$IMAGE,cache=none,format=raw,id=main,if=none \
       -device virtio-blk-pci,drive=main,bootindex=1 \
       -fsdev local,id=fsdev0,path=$SCRIPT_DIR/local-snaps,security_model=none \
