@@ -5,3 +5,6 @@ include:
   - local: debian/neon-core-models.yml
   - local: debian/neon-core-image-dangerous.yml
   #- local: debian/neon-core-image-signed.yml
+
+variables:
+  SNAP_BUILD_TYPE: "legacy"
