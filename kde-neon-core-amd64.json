@@ -141,6 +141,13 @@
             "type": "app",
             "id": "CwdMAZoScOw1AcaGwtwtJYiOov9gZwyL",
             "presence": "optional"
+        },
+        {
+            "name": "kwrite",
+            "default-channel": "latest/stable",
+            "type": "app",
+            "id": "kDq3GCXn1MxmDShWY2WZCsJ0uV1mgGOa",
+            "presence": "optional"
         }
     ]
 }
