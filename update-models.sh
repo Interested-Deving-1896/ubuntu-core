@@ -9,7 +9,10 @@ REF=`git branch --show-current`
 
 # Fetch Pipeline ID
 
-if pipeline_id=`curl -s -f "https://invent.kde.org/api/v4/projects/17308/pipelines" | jq -e "[.[] | select(.ref == \"$REF\")][0].id"`
+pipeline_id=`curl -s -f "https://invent.kde.org/api/v4/projects/17308/pipelines" | jq -e "[.[] | select(.ref == \"$REF\")][0].id"`
+success=$?
+
+if [ $success -eq 0 ]
 then
     job_url="https://invent.kde.org/api/v4/projects/17308/pipelines/$pipeline_id/jobs?scope[]=success"
     echo "Using pipeline #$pipeline_id - job url: $job_url"
@@ -20,7 +23,10 @@ fi
 
 # Fetch Job ID
 
-if job_id=`curl -s -f "$job_url" | jq -e '.[] | select(.name == "neon_core_models") | .id'`
+job_id=`curl -s -f "$job_url" | jq -e '.[] | select(.name == "neon_core_models") | .id'`
+success=$?
+
+if [ $success -eq 0 ]
 then
     artifacts_url="https://invent.kde.org/api/v4/projects/17308/jobs/$job_id/artifacts"
     echo "Using job #$job_id - artifacts url: $artifacts_url"
@@ -32,7 +38,7 @@ fi
 # Fetch Job Artefact, Unpack & Commit
 
 curl -s --location --output "$SCRIPT_DIR/Signed_models.zip" "$artifacts_url"
-unzip "$SCRIPT_DIR/Signed_models.zip" -d "$SCRIPT_DIR/Signed_models"
+unzip -qq "$SCRIPT_DIR/Signed_models.zip" -d "$SCRIPT_DIR/Signed_models"
 success=$?
 
 if [ $success -eq 0 ]
