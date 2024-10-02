@@ -16,7 +16,7 @@ Go to https://invent.kde.org/neon/ubuntu-core/-/pipelines/new. On this page, sel
 
 Your branch needs to be protected, and its name needs to match the `models.*` pattern for the job to run.
 
-Once the job is complete, it will upload both `dangerous` and `signed` versions of the model as pipeline artefacts. You can then download them, test them locally, and commit then.
+Once the job is complete, it will upload both `dangerous` and `signed` versions of the model as pipeline artefacts. You can then run `update-models.sh` to automatically download and commit the new models to your current branch.
 
 ### dangerous vs signed
 
