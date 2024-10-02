@@ -37,7 +37,7 @@ echo "Using job #$job_id - artifacts url: $artifacts_url"
 
 curl -s --location --output "$DL_DIR/Signed_models.zip" "$artifacts_url"
 unzip -qq "$DL_DIR/Signed_models.zip" -d "$DL_DIR/Signed_models" 2> /dev/null \
-  || failure "`echo "Failed to download artifacts:" ; cat "$DL_DIR/Signed_models.zip" ; echo`"
+  || failure "`echo "Failed to download artifacts:" ; cat -v "$DL_DIR/Signed_models.zip" ; echo`"
 mv "$DL_DIR"/Signed_models/*.model "$SCRIPT_DIR"/
 git add -f "$SCRIPT_DIR"/*.model
 git commit -m "Update models"
