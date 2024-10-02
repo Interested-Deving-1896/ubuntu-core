@@ -5,56 +5,41 @@
 
 SCRIPT_PATH=`readlink -f $0`
 SCRIPT_DIR=`dirname $SCRIPT_PATH`
+DL_DIR=`mktemp -d model_artifactsXXX`
 REF=`git branch --show-current`
+
+cleanup() {
+    rm -rf "$DL_DIR"
+}
+
+failure() {
+    echo "$1"
+    cleanup
+    exit 1
+}
 
 # Fetch Pipeline ID
 
-pipeline_id=`curl -s -f "https://invent.kde.org/api/v4/projects/17308/pipelines" | jq -e "[.[] | select(.ref == \"$REF\")][0].id"`
-success=$?
-
-if [ $success -eq 0 ]
-then
-    job_url="https://invent.kde.org/api/v4/projects/17308/pipelines/$pipeline_id/jobs?scope[]=success"
-    echo "Using pipeline #$pipeline_id - job url: $job_url"
-else
-    echo "Pipeline not found, make sure you have manually triggered a pipeline for this branch"
-    exit 1
-fi
+pipeline_id=`curl -s -f "https://invent.kde.org/api/v4/projects/17308/pipelines" | jq -e "[.[] | select(.ref == \"$REF\")][0].id"` \
+  || failure "Pipeline not found, make sure you have manually triggered a pipeline for this branch"
+job_url="https://invent.kde.org/api/v4/projects/17308/pipelines/$pipeline_id/jobs?scope[]=success"
+echo "Using pipeline #$pipeline_id - job url: $job_url"
 
 # Fetch Job ID
 
-job_id=`curl -s -f "$job_url" | jq -e '.[] | select(.name == "neon_core_models") | .id'`
-success=$?
-
-if [ $success -eq 0 ]
-then
-    artifacts_url="https://invent.kde.org/api/v4/projects/17308/jobs/$job_id/artifacts"
-    echo "Using job #$job_id - artifacts url: $artifacts_url"
-else
-    echo "Job not found, make sure you have manually started the 'neon_core_models' job in the pipeline #$pipeline_id and it succeeded"
-    exit 1
-fi
+job_id=`curl -s -f "$job_url" | jq -e '.[] | select(.name == "neon_core_models") | .id'` \
+  || failure "Job not found, make sure you have manually started the 'neon_core_models' job in the pipeline #$pipeline_id and it succeeded"
+artifacts_url="https://invent.kde.org/api/v4/projects/17308/jobs/$job_id/artifacts"
+echo "Using job #$job_id - artifacts url: $artifacts_url"
 
 # Fetch Job Artefact, Unpack & Commit
 
-curl -s --location --output "$SCRIPT_DIR/Signed_models.zip" "$artifacts_url"
-unzip -qq "$SCRIPT_DIR/Signed_models.zip" -d "$SCRIPT_DIR/Signed_models"
-success=$?
+curl -s --location --output "$DL_DIR/Signed_models.zip" "$artifacts_url"
+unzip -qq "$DL_DIR/Signed_models.zip" -d "$DL_DIR/Signed_models" 2> /dev/null \
+  || failure "`echo "Failed to download artifacts:" ; cat "$DL_DIR/Signed_models.zip" ; echo`"
+mv "$DL_DIR"/Signed_models/*.model "$SCRIPT_DIR"/
+git add -f "$SCRIPT_DIR"/*.model
+git commit -m "Update models"
 
-if [ $success -eq 0 ]
-then
-    mv "$SCRIPT_DIR"/Signed_models/*.model ./
-    git add -f ./*.model
-    git commit -m "Update models"
-    echo "Commit done, you may verify it before pushing it"
-else
-    echo "Failed to download artifacts:"
-    cat "$SCRIPT_DIR/Signed_models.zip" ; echo
-fi
-
-# Cleanup
-
-rm -f "$SCRIPT_DIR/Signed_models.zip"
-rm -rf "$SCRIPT_DIR/Signed_models"
-
-exit $success
+cleanup
+echo "Commit done, you may verify it before pushing it"
