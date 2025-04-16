@@ -17,13 +17,6 @@ neon_core_image_dangerous:
     - Snap
   interruptible: true
   script:
-    # get the missing plasma-desktop-session snap from the latest build...
-    - mkdir workspace/ && cd workspace/
-    - wget -O Snap_artifacts.zip "https://invent.kde.org/api/v4/projects/neon%2fsnap-packaging%2fplasma-desktop-session/jobs/artifacts/master/download?job=snap_snapcraft_lxd"
-    - unzip -e Snap_artifacts.zip
-    - mv ./kde-ci-packages/plasma-desktop-session*.snap $CI_PROJECT_DIR/local-snaps/plasma-desktop-session.snap
-    - cd $CI_PROJECT_DIR
-
     # build the image with the project's tooling
     - echo building kde-neon-core in dangerous mode ...
     - make kde-neon-core-dangerous-amd64.img.xz 2>&1 | tee task.log
