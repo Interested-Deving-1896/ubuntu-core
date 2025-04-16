@@ -2,7 +2,7 @@ name: plasma-core-desktop-amd64
 display-name: Plasma Core Desktop amd64
 revision: 1
 architecture: amd64
-series: mantic
+series: jammy
 class: preinstalled
 kernel: linux-image-generic
 gadget:
@@ -16,7 +16,7 @@ rootfs:
   seed:
     urls:
       - "git://git.launchpad.net/~ubuntu-core-dev/ubuntu-seeds/+git/"
-    branch: mantic
+    branch: jammy
     names:
       - minimal
 customization:
