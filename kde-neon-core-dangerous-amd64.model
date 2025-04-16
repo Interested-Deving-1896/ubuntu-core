@@ -4,17 +4,17 @@ series: 16
 brand-id: 2rsYZu6kqYVFsSejExu4YENdXQEO40Xb
 model: kde-neon-core-22-amd64
 architecture: amd64
-base: plasma-core22-desktop
+base: core24-desktop
 display-name: KDE Neon Core 22 (amd64), dangerous
 grade: dangerous
 snaps:
   -
-    default-channel: latest/edge
-    id: 9TJUGzZ1Vt503ZXdjOQmVfF6k4pAVrAO
-    name: pc-plasma-desktop
+    default-channel: 24/edge
+    id: mZqHskGgGDECRCKP7h7ef3Rl2wTwyNfy
+    name: pc-desktop
     type: gadget
   -
-    default-channel: 23.10/stable
+    default-channel: 24-hwe/stable
     id: pYVQrBcKmBa0mZ4CCN7ExT6jH8rY1hza
     name: pc-kernel
     type: kernel
@@ -24,22 +24,32 @@ snaps:
     name: snapd
     type: snapd
   -
-    default-channel: latest/edge
-    id: X9TwqMA7C0ENRxpA7Y4DzwPZvbDc20sR
-    name: plasma-core22-desktop
+    default-channel: latest/stable
+    id: GY5GohJ4F1ZsWpkosG0joeZyDfHzTZrD
+    name: core24-desktop
     type: base
-  -
-    default-channel: latest/edge
-    id: shFM21t3gsBQnlceeTRrWEdNoaLD88my
-    name: plasma-desktop-session
-    type: app
   -
     default-channel: latest/stable
     id: amcUKQILKXHHTlmSa7NMdnXSx02dNeeT
     name: core22
     type: base
   -
-    default-channel: 22/stable
+    default-channel: latest/stable
+    id: dwTAh7MZZ01zyriOZErqd1JynQLiOGvM
+    name: core24
+    type: base
+  -
+    default-channel: latest/stable
+    id: HyhSEBPv3vHsW6uOHkQR384NgI7S6zpj
+    name: mesa-2404
+    type: app
+  -
+    default-channel: latest/stable
+    id: LhMhwxTnn5kUuUwcnjQrs95QruWruUho
+    name: ffmpeg-2404
+    type: app
+  -
+    default-channel: 24/stable
     id: RmBXKl6HO6YOC2DE4G2q1JzWImC04EUy
     name: network-manager
     type: app
@@ -69,24 +79,44 @@ snaps:
     name: ipp-usb
     type: app
   -
-    default-channel: 22/stable
+    default-channel: 24/stable
     id: dVK2PZeOLKA7vf1WPCap9F8luxTk9Oll
     name: avahi
     type: app
   -
-    default-channel: 22/stable
+    default-channel: 24/stable
     id: JmzJi9kQvHUWddZ32PDJpBRXUpGRxvNS
     name: bluez
     type: app
   -
-    default-channel: latest/stable
-    id: J60k4JY0HppjwOjW8dZdYc8obXKxujRu
-    name: lxd
+    default-channel: latest/candidate
+    id: cXXVv4NGwXqlxTVSdrjsuvrPGAHfRSRs
+    name: pipewire
     type: app
   -
-    default-channel: latest/edge
-    id: xODwiAdjx9KGChvI1z9Xx2JWJE7oLFF6
-    name: ubuntu-core-desktop-init
+    default-channel: 24/edge
+    id: KTyDAsgNZg4u9UBJ63MHn6q12fmUjOfn
+    name: udisks2
+    type: app
+  -
+    default-channel: latest/candidate
+    id: tBdYpKjXcW5farGGJaWiYXrxIwMVMtx5
+    name: ubuntu-desktop-init
+    type: app
+  -
+    default-channel: latest/stable
+    id: kvNmVu4h6kL6NMJjXqPyvG3K3EhDO1S9
+    name: kf6-core24
+    type: app
+  -
+    default-channel: latest/stable
+    id: YsIAEPpbeAuIUcNo6znKlIhaEnNbkinh
+    name: plasma-core24-desktop
+    type: app
+  -
+    default-channel: latest/stable
+    id: shFM21t3gsBQnlceeTRrWEdNoaLD88my
+    name: plasma-desktop-session
     type: app
   -
     default-channel: latest/stable
@@ -96,8 +126,9 @@ snaps:
     type: app
   -
     default-channel: latest/stable
-    id: DlAIkaMJ1XMsnQRKcn0EjE2nc1S37X4r
-    name: kf6-core22
+    id: 2uTr1T92yb7g2KmgLx3pIww0JkFBYx4t
+    name: plasma-discover
+    presence: optional
     type: app
   -
     default-channel: latest/stable
@@ -124,16 +155,16 @@ snaps:
     presence: optional
     type: app
 storage-safety: prefer-encrypted
-timestamp: 2024-08-09T09:29:51+00:00
+timestamp: 2025-04-16T10:18:54+00:00
 sign-key-sha3-384: 3euluygUnLeUKLKaWsPve6O9rb9sMFrjTokZgbI74LfLAn-eyi0JwxOVdd1QQ_Vp
 
-AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJmteGPAAoJEMXyZbcusBCQdTsQALei
-BPnfvofYC54yJkpoZy9A1l1KoRoYrKcyCVX7eZFUdNO07uPDAX6TLEqE2nvJWE400R3tlEmORyMY
-sr2AWT0us+GHS9tItUTkh6vuq/mlYnt+TiUG30Yb7R/m0FcPcAvS3W3ZdS6HE1B+GmD43R4cI6Yh
-tcpQMXPIYr40ddDvTNJjwEeSQ8BguVKEyZK4wLbmnRyFMNRaEb2g+F0OdQXicEBFn993tle/Mvpl
-Ynko+tm68RihkdF8+SYh87/kqoEnWsPTzylwu+7ZVuYgNMztSh2EE0NpWPu7/bgPbThBT7vyY/qh
-F6JvTqNRyOzWW6vqH2ib2PNbPYPaadEc7BIbDludNJuI+LWviyg5K/nn4ssxsQGfE30JhJfXjaVw
-BM9q31mxhwgEaBpKB5gDWNOxQR8EbDpqXbuypnXoQtY8Dfeg6oIaSoGUxfA513PMo2oALH9iOXuk
-KQV57LvlzOlRcz+LNNJuScSIhz8XgfZOjUCDSdC2kiBBVdW96tfwNYCWWiGl1Z4VuBCoUjU6+SUO
-OMSBwyWFzsfatcIoEaBIevMHRfavgpz+0FuLgBPD+bjX2Wpfr6h8XQW2GL11ueh2wWesVsCrSo/w
-mJagAvHjP3pXPZTcfGFlnDM84tWCFV0dkmCd+lUAAV1bLMd4UUdXTl/PPOpam27iBcCW9hkZ
+AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJn/4QPAAoJEMXyZbcusBCQynwP/iI8
+nX6dW6S6eAVvIY1lTwLDaABwG+4elRXjFjr0/TpiiYCrEVdeLDlFdVx8PToVSCCrZD/4+yQH7qHW
+eYTgoIYoxYyU303l7hMY3WaLV/rphhLrQVrEoZ7DbBUCehepyvc7KyD+90cSSkzEJm7Y/IGhJQPr
+T6u0zpkye6AFennyAWU3IdjEgeD8x8RT80lVyffHFk0zOEIEdtzuUn35HvKoChyvw36y99CLNYj2
+ApSqmhw4NUxJPzDuDuNSl1jlFitATf2Yq7rEWMhIQLh3/ZYArgoTHwoLPjELYs6JQenlOFMlCQO+
+EiTpOG2cWffV+NMUUUAuNMCAy6fbG0Kc91RCILl9v+yT9yDb3a3ZD4fsR5aj2RXYgkqYzhKV90wK
+a9BlZDVhukbaQXMkbCVli9i4cZKmEnnJqn3xl4UVapgszAv3dBpadQUlFtxuiMhofnFvzzLuHjFf
+UlOkrJ/h5Gmj7yIy7Fa6b/wtEgApW0zW3R++oLX7dbymUa1fLlcRtuz3R2faS3euHIMGhaFd8wj8
+fcw/TpKgQeYMZ9axu/1nUkfOF/eJpGGjhya0DXI4cYyAQWAClGIGka/4XSfD7Bi5sEcSKN9s27RK
+AS6hNaVUY4+LreIZ+RkjcLHxS3w0++OamksKzuaTXeQ4DYKgYO2ZW0mr3I3sXp/UTcDbCYL2
