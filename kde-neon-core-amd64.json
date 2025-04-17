@@ -32,7 +32,7 @@
         },
         {
             "name": "core24-desktop",
-            "default-channel": "latest/stable",
+            "default-channel": "latest/edge",
             "type": "base",
             "id": "GY5GohJ4F1ZsWpkosG0joeZyDfHzTZrD"
         },
