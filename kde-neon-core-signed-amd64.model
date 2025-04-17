@@ -24,7 +24,7 @@ snaps:
     name: snapd
     type: snapd
   -
-    default-channel: latest/stable
+    default-channel: latest/edge
     id: GY5GohJ4F1ZsWpkosG0joeZyDfHzTZrD
     name: core24-desktop
     type: base
@@ -155,16 +155,16 @@ snaps:
     presence: optional
     type: app
 storage-safety: prefer-encrypted
-timestamp: 2025-04-16T10:18:59+00:00
+timestamp: 2025-04-17T21:10:22+00:00
 sign-key-sha3-384: 3euluygUnLeUKLKaWsPve6O9rb9sMFrjTokZgbI74LfLAn-eyi0JwxOVdd1QQ_Vp
 
-AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJn/4QTAAoJEMXyZbcusBCQVYEQALS9
-q7wQMlAInPILQu70WI1VWg4oPoPMI6FbA1DSTCIl10/VKklm0/0bXoXILyQiuhNd/MqlMGo7B/wI
-rkasexHElU29OuPjym0Bxh63mj5c+LppoS05FlzkfF00KbG/doHpjP2NTqRdiKRnXFf/QGKElFFp
-ybZDoVFPtUBf1LPzZg2kPcB3104UIbxo8tNO3FVt9mQXLGH5V86eaf7Aw8MSOt3hmRfT4vIRXIba
-AH5/rFCfIQjhL595pw6kfveCXvk+cwI0GY9RaG6RFUHYKkee4CrF+LYGy1IG6Rnxze9uax7P2xN+
-M+AGIlvPtNivvTZds4wyBxCJjBjLKpb97MigvUdWgovkzLp9u7nZYRMIPpK94YiwsgM8uVzZdT9i
-2FSmTJtSD/bNiQJ7TkG2Id3AyxLSCCaH4zfvJd4WnunEZKCo8sRIxv4DU7Gs6WhIw6At/MeYk7Y1
-hi0Brh9z2zmuxMWU8C7j3EdMZjXYc0MSqSbpGbyVs3vBd3IAeKFDP4ohstv6K9joh5SNhELOSdbx
-RST8+TjkIzY+7j/VV3B0SVACRjIvZlM3huAbWsYWBh3Di8cQL2WLljuDvwyNIOaqXz6GosAH/U8I
-quWUR9guf+IB7mP7e8w3acc8CEHvkKBwxuJiyoxUVVlVb9OcnPeoUALtdlmEnEdm6VUAf6Yh
+AcLBcwQAAQoAHRYhBPtpKo5I2PSFB0DBRsXyZbcusBCQBQJoAW4/AAoJEMXyZbcusBCQNAwP/1WO
+JDo0tYTS+ALfcWHKqLfpKXCIGF/ZbJghZqLY8gn6lYQPVNrXH2+/A37cwc01aBMTXZSpSAXkZKuX
+ezPqmYK1bkJm2+Z5AA5Rnr/OQ1AQS8fDuShvf9Ap3ddrn/3mZ9yoZanGEfVqulsTMt3zpAIo4iiZ
+aTZ+OzZh3arSQDyPGQaZ7/Nf8eCuTALRZ6vMglNXD50MlwcUfFr/pXmaq2JgTpRTOiVCRju9tH4J
+ZM3cRqNGpwmh03nnjymxQtXhMRQSRkHvwkscPKwFZEULMAfrK/TXSJ1qepT2HRSXqGzYk5J68IQV
+91VCWgJ4tGu4purYDG/3AX9/QaA9/x5ONlEFXM/hQBiLp3qaRhGfThxpMC3dwxZAFGUQq/DYGhXK
+7MV8BLi3BjeMKfrQKY/sxgJgoSfcN0eoxcZuSoyIcT4xBKtLoQX5hV18zsgerSGTDPu6BEQiYA4v
+9uLNso5MpFzmWtYMu8VKRx1VqnWrtLeDIPnWrwBPIwfPOBZSSKgKoFHpf8tMdtcupJKtNu274nzn
+lyIUoRPTiC+02SCNvcvW5vtqhJmbdQsoS5IpMA5+evO4pC7U8kI8EdAmhS6SB/nIGus5WPpNqliw
+X02eU25fAKQQwUYYdIceIHhusCyH/JIwbiClsvTOCjwR8kgJXmibo4Coz9MfqtLVnjcOCBXD
