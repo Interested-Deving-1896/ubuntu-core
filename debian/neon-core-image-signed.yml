@@ -1,4 +1,5 @@
 neon_core_image_signed:
+  image: storage.kde.org/vm-images/snap-builder
   rules:
     # Only build the image on master
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
@@ -11,7 +12,8 @@ neon_core_image_signed:
     SNAPCRAFT_BUILD_ENVIRONMENT: "host"
     SNAPCRAFT_MANAGED_MODE: "y"
   tags:
-    - Snap
+    - VM
+    - amd64
   interruptible: true
   script:
     # build the image with the project's tooling

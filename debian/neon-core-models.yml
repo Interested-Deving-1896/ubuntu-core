@@ -1,4 +1,5 @@
 neon_core_models:
+  image: storage.kde.org/vm-images/snap-builder
   rules:
     # Only allow manual trigger on `models.*` branches
     - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
@@ -11,7 +12,8 @@ neon_core_models:
     SNAPCRAFT_BUILD_ENVIRONMENT: "host"
     SNAPCRAFT_MANAGED_MODE: "y"
   tags:
-    - Snap
+    - VM
+    - amd64
   interruptible: true
   script:
     # prepare the Snap specific GnuPG workspace

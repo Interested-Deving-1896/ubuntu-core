@@ -5,6 +5,8 @@ include:
   - local: debian/neon-core-models.yml
   - local: debian/neon-core-image-dangerous.yml
   - local: debian/neon-core-image-signed.yml
+  - project: sysadmin/ci-utilities
+    ref: work/switch-vm-ci
 
 variables:
   SNAP_BUILD_TYPE: "legacy"
