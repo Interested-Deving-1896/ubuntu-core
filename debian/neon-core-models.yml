@@ -1,4 +1,5 @@
 neon_core_models:
+  stage: build
   image: storage.kde.org/vm-images/snap-builder
   rules:
     # Only allow manual trigger on `models.*` branches
