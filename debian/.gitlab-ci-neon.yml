@@ -7,6 +7,9 @@ include:
   - local: debian/neon-core-image-signed.yml
   - project: sysadmin/ci-utilities
     ref: work/switch-vm-ci
+    file:
+      - /gitlab-templates/blocks/workflow.yml
+
 
 variables:
   SNAP_BUILD_TYPE: "legacy"
