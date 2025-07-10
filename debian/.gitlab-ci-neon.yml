@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: CC0-1.0
 
+image: storage.kde.org/vm-images/snap-builder
+
 include:
   - project: sysadmin/ci-utilities
     ref: work/switch-vm-ci
