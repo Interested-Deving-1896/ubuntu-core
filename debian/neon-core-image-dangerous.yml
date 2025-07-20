@@ -5,7 +5,6 @@ neon_core_image_dangerous:
     # Allow manual trigger on `models.*` branches
     - if: '$CI_COMMIT_BRANCH =~ /models\..*/'
       when: manual
-      rules:
     # run the job on mainline branches of mainline repositories
     - if: $KDECI_SECURE_SERVICES_KEY
       when: on_success
