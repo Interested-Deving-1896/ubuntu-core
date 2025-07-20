@@ -5,7 +5,6 @@ image: storage.kde.org/vm-images/snap-builder
 
 include:
   - project: sysadmin/ci-utilities
-    ref: work/switch-vm-ci
     file:
       - /gitlab-templates/blocks/workflow.yml
 
