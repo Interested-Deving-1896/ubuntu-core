@@ -1,21 +1,13 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: CC0-1.0
 
-image: storage.kde.org/vm-images/snap-builder
-tags:
-  - VM
-  - amd64
 include:
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/blocks/workflow.yml
-
   - local: debian/neon-core-models.yml
   - local: debian/neon-core-image-dangerous.yml
   - local: debian/neon-core-image-signed.yml
-
-before_script:
-    - git clone https://invent.kde.org/sysadmin/ci-utilities.git --depth=1
 
 variables:
   SNAP_BUILD_TYPE: "legacy"
