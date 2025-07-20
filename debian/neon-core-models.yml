@@ -11,7 +11,8 @@ neon_core_models:
     SNAPCRAFT_BUILD_ENVIRONMENT: "host"
     SNAPCRAFT_MANAGED_MODE: "y"
   tags:
-    - Snap
+    - VM
+    - amd64
   interruptible: true
   script:
     # prepare the Snap specific GnuPG workspace

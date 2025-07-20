@@ -11,7 +11,8 @@ neon_core_image_signed:
     SNAPCRAFT_BUILD_ENVIRONMENT: "host"
     SNAPCRAFT_MANAGED_MODE: "y"
   tags:
-    - Snap
+    - VM
+    - amd64
   interruptible: true
   script:
     # build the image with the project's tooling
