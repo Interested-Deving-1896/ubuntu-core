@@ -2,7 +2,9 @@
 # SPDX-License-Identifier: CC0-1.0
 
 image: storage.kde.org/vm-images/snap-builder
-
+tags:
+  - VM
+  - amd64
 include:
   - project: sysadmin/ci-utilities
     file:
