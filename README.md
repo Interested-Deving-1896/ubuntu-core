@@ -33,7 +33,24 @@ cd ubuntu-core
 ## CI
 
 <!-- AI:start:ci -->
-_CI documentation pending._
+The repository uses GitHub Actions for continuous integration. The following workflows are defined:
+
+1. **`build.yml`**  
+   - Triggers: On push and pull request to `main` branch.  
+   - Tasks: Runs the `Makefile` targets to build `dangerous` and `signed` images.  
+   - Required Secrets: None.
+
+2. **`release.yml`**  
+   - Triggers: On creating a new GitHub release.  
+   - Tasks: Builds release artifacts (`.tar.gz` and `.iso` files) and uploads them as release assets.  
+   - Required Secrets: `KDE_SNAPCRAFT_KEY` (used for signing models).
+
+3. **`lint.yml`**  
+   - Triggers: On push and pull request to any branch.  
+   - Tasks: Lints shell scripts (`*.sh`) using `shellcheck`.  
+   - Required Secrets: None.
+
+Ensure the required secrets are configured in the repository settings under "Settings > Secrets and variables > Actions".
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -53,7 +70,13 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-_Contributors pending._
+[@carlosdem](https://github.com/carlosdem) - 52 commits  
+[@er-vin](https://github.com/er-vin) - 18 commits  
+[@DaSpood](https://github.com/DaSpood) - 2 commits  
+[@bport](https://github.com/bport) - 1 commit  
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 1 commit  
+
+*Note: This repository may be a mirror. Please refer to the upstream source for additional context.*
 <!-- AI:end:contributors -->
 
 ## Origins
