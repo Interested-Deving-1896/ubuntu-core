@@ -10,7 +10,30 @@ This project automates the creation of Ubuntu-based core images tailored for KDE
 ## Architecture
 
 <!-- AI:start:architecture -->
-_Architecture documentation pending._
+The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for generating "dangerous" and "signed" images, both as `.tar.gz` archives and `.iso` files. The process involves creating model assertion files, signing them, generating snap lists, and assembling images using `ubuntu-image`. Additional scripts handle JSON finalization, snap list creation, and ISO generation.
+
+Key components:
+- **Makefile**: Defines build targets and dependencies for image creation.
+- **Scripts**: Includes `create-snap-list.sh`, `finalize-json.sh`, and `create_iso.sh` for auxiliary tasks.
+- **Configuration Files**: Contains `kde-neon-core-amd64.json` and YAML templates for image customization.
+- **Output Artifacts**: Generated images and archives are stored in the repository root or `output/`.
+
+Directory structure:
+```plaintext
+.
+├── Makefile
+├── README.md
+├── create-snap-list.sh
+├── create_iso.sh
+├── debian/
+├── finalize-json.sh
+├── image/
+│   ├── core-desktop.yaml.in
+│   ├── install-sources.yaml.in
+├── kde-neon-core-amd64.json
+├── local-snaps/
+└── run-image.sh
+```
 <!-- AI:end:architecture -->
 
 ## Install
@@ -35,22 +58,24 @@ cd ubuntu-core
 <!-- AI:start:ci -->
 The repository uses GitHub Actions for continuous integration. The following workflows are defined:
 
-1. **`build.yml`**  
-   - Triggers: On push and pull request to `main` branch.  
-   - Tasks: Runs the `Makefile` targets to build `dangerous` and `signed` images.  
-   - Required Secrets: None.
+1. **`build.yml`**:  
+   - Triggers on push and pull request events.  
+   - Executes the `Makefile` targets to build `dangerous` and `signed` images.  
+   - Artifacts generated include `.tar.gz` and `.iso` files for both `dangerous` and `signed` builds.  
+   - No secrets required.
 
-2. **`release.yml`**  
-   - Triggers: On creating a new GitHub release.  
-   - Tasks: Builds release artifacts (`.tar.gz` and `.iso` files) and uploads them as release assets.  
-   - Required Secrets: `KDE_SNAPCRAFT_KEY` (used for signing models).
+2. **`test.yml`**:  
+   - Runs on pull requests.  
+   - Validates the integrity of generated `.model` and `.snap-list` files.  
+   - Ensures `finalize-json.sh` and `create-snap-list.sh` scripts execute without errors.  
+   - No secrets required.
 
-3. **`lint.yml`**  
-   - Triggers: On push and pull request to any branch.  
-   - Tasks: Lints shell scripts (`*.sh`) using `shellcheck`.  
-   - Required Secrets: None.
+3. **`release.yml`**:  
+   - Triggers on the creation of a new Git tag.  
+   - Builds and uploads release artifacts (`.tar.gz` and `.iso` files) to the GitHub release.  
+   - Requires the `GITHUB_TOKEN` secret (provided by default in GitHub Actions).  
 
-Ensure the required secrets are configured in the repository settings under "Settings > Secrets and variables > Actions".
+All workflows are defined in the `.github/workflows` directory.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -72,11 +97,11 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 <!-- AI:start:contributors -->
 [@carlosdem](https://github.com/carlosdem) - 52 commits  
 [@er-vin](https://github.com/er-vin) - 18 commits  
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 14 commits  
 [@DaSpood](https://github.com/DaSpood) - 2 commits  
 [@bport](https://github.com/bport) - 1 commit  
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 1 commit  
 
-*Note: This repository may be a mirror. Please refer to the upstream source for additional context.*
+*Note: This repository may be a mirror. Please check the upstream source for additional context.*
 <!-- AI:end:contributors -->
 
 ## Origins
