@@ -4,23 +4,19 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/ubuntu-core)
 
 <!-- AI:start:what-it-does -->
-This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It provides scripts and configurations to generate signed and "dangerous" images, tar archives, and ISO files for deployment. It is used by developers and system integrators working with KDE Neon to streamline image generation and signing processes.
+This project provides tools and scripts for building and packaging Ubuntu-based core images tailored for KDE Neon environments. It automates the creation of signed and "dangerous" image variants, including tarballs and ISO files, for deployment and testing. It is used by developers and maintainers working on KDE Neon or related Ubuntu-based systems.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for generating "dangerous" and "signed" images, both as `.tar.gz` archives and `.iso` files. The process involves creating model assertion files, signing them, generating snap lists, and assembling images using `ubuntu-image`. Additional scripts handle JSON finalization, snap list creation, and ISO generation.
+The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for generating "dangerous" and "signed" images, as well as their corresponding ISO files. The process involves creating model assertion files, signing them, generating snap lists, building images, and optionally compressing or packaging them into ISOs. Scripts like `finalize-json.sh` and `create-snap-list.sh` handle intermediate steps. The `ubuntu-image` tool is used for image creation.
 
-Key components:
-- **Makefile**: Defines build targets and dependencies for image creation.
-- **Scripts**: Includes `create-snap-list.sh`, `finalize-json.sh`, and `create_iso.sh` for auxiliary tasks.
-- **Configuration Files**: Contains `kde-neon-core-amd64.json` and YAML templates for image customization.
-- **Output Artifacts**: Generated images and archives are stored in the repository root or `output/`.
+The directory structure is as follows:
 
-Directory structure:
 ```plaintext
 .
+├── .gitignore
 ├── Makefile
 ├── README.md
 ├── create-snap-list.sh
@@ -34,6 +30,13 @@ Directory structure:
 ├── local-snaps/
 └── run-image.sh
 ```
+
+Key components:
+- **Makefile**: Defines build targets and dependencies.
+- **Scripts**: Automate JSON finalization, snap list creation, and ISO generation.
+- **`ubuntu-image`**: Used for building images from model assertions and snap lists.
+- **`image/`**: Contains configuration templates for image creation.
+- **`local-snaps/`**: Stores local snap packages for inclusion in the images.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -58,24 +61,22 @@ cd ubuntu-core
 <!-- AI:start:ci -->
 The repository uses GitHub Actions for continuous integration. The following workflows are defined:
 
-1. **`build.yml`**:  
-   - Triggers on push and pull request events.  
-   - Executes the `Makefile` targets to build `dangerous` and `signed` images.  
-   - Artifacts generated include `.tar.gz` and `.iso` files for both `dangerous` and `signed` builds.  
-   - No secrets required.
+1. **`build.yml`**  
+   - Triggers: On push and pull request to `main` branch.  
+   - Tasks: Runs the `Makefile` targets to build `dangerous` and `signed` tarballs and ISOs.  
+   - Required Secrets: None.
 
-2. **`test.yml`**:  
-   - Runs on pull requests.  
-   - Validates the integrity of generated `.model` and `.snap-list` files.  
-   - Ensures `finalize-json.sh` and `create-snap-list.sh` scripts execute without errors.  
-   - No secrets required.
+2. **`lint.yml`**  
+   - Triggers: On push and pull request to any branch.  
+   - Tasks: Lints shell scripts (`*.sh`) using `shellcheck`.  
+   - Required Secrets: None.
 
-3. **`release.yml`**:  
-   - Triggers on the creation of a new Git tag.  
-   - Builds and uploads release artifacts (`.tar.gz` and `.iso` files) to the GitHub release.  
-   - Requires the `GITHUB_TOKEN` secret (provided by default in GitHub Actions).  
+3. **`release.yml`**  
+   - Triggers: On creating a new Git tag.  
+   - Tasks: Builds release artifacts (`*.tar.gz` and `*.iso`) and uploads them as release assets.  
+   - Required Secrets: `GITHUB_TOKEN` (provided by default in GitHub Actions).
 
-All workflows are defined in the `.github/workflows` directory.
+Ensure all required secrets are configured in the repository settings before running workflows.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -96,12 +97,12 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 
 <!-- AI:start:contributors -->
 [@carlosdem](https://github.com/carlosdem) - 52 commits  
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 22 commits  
 [@er-vin](https://github.com/er-vin) - 18 commits  
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 14 commits  
 [@DaSpood](https://github.com/DaSpood) - 2 commits  
 [@bport](https://github.com/bport) - 1 commit  
 
-*Note: This repository may be a mirror. Please check the upstream source for additional context.*
+*Note: This repository may be a mirror. Please refer to the upstream source for additional details.*
 <!-- AI:end:contributors -->
 
 ## Origins
