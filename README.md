@@ -4,7 +4,7 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/ubuntu-core)
 
 <!-- AI:start:what-it-does -->
-This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It generates signed and unsigned tarball and ISO files, enabling developers and system integrators to build and distribute customized operating system images. It addresses the need for reproducible and configurable image generation in KDE Neon-based systems.
+This project provides tools and configurations for building Ubuntu Core images tailored for KDE Neon environments. It automates the creation of signed and "dangerous" (unsigned) system images, tarballs, and ISO files, enabling developers and system integrators to generate customized, minimal operating system images for deployment. It is primarily used by those working on KDE Neon or related projects requiring Ubuntu Core-based distributions.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
@@ -97,12 +97,12 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 
 <!-- AI:start:contributors -->
 [@carlosdem](https://github.com/carlosdem) - 52 commits  
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 22 commits  
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 24 commits  
 [@er-vin](https://github.com/er-vin) - 18 commits  
 [@DaSpood](https://github.com/DaSpood) - 2 commits  
 [@bport](https://github.com/bport) - 1 commit  
 
-*Note: This repository may be a mirror. Please refer to the upstream source for additional details.*
+*Note: This repository may be a mirror. Please refer to the upstream source for additional context.*
 <!-- AI:end:contributors -->
 
 ## Origins
