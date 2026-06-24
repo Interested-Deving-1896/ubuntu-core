@@ -61,22 +61,23 @@ cd ubuntu-core
 <!-- AI:start:ci -->
 The repository uses GitHub Actions for continuous integration. The following workflows are defined:
 
-1. **`build.yml`**  
-   - Triggers: On push and pull request to `main` branch.  
-   - Tasks: Runs the `Makefile` targets to build `dangerous` and `signed` tarballs and ISOs.  
-   - Required Secrets: None.
+1. **`build.yml`**:  
+   - Triggers on pushes and pull requests to the `main` branch.  
+   - Executes the `Makefile` targets to build `dangerous` and `signed` artifacts.  
+   - Artifacts include `.tar.gz` and `.iso` files for both dangerous and signed builds.  
+   - No secrets required.
 
-2. **`lint.yml`**  
-   - Triggers: On push and pull request to any branch.  
-   - Tasks: Lints shell scripts (`*.sh`) using `shellcheck`.  
-   - Required Secrets: None.
+2. **`release.yml`**:  
+   - Triggers on creating a new Git tag.  
+   - Builds release artifacts using the `Makefile` and uploads them as release assets.  
+   - Requires the `GITHUB_TOKEN` secret for authentication.
 
-3. **`release.yml`**  
-   - Triggers: On creating a new Git tag.  
-   - Tasks: Builds release artifacts (`*.tar.gz` and `*.iso`) and uploads them as release assets.  
-   - Required Secrets: `GITHUB_TOKEN` (provided by default in GitHub Actions).
+3. **`lint.yml`**:  
+   - Triggers on pushes and pull requests.  
+   - Runs shell script linters (e.g., `shellcheck`) on all `.sh` files in the repository.  
+   - No secrets required.  
 
-Ensure all required secrets are configured in the repository settings before running workflows.
+Ensure required secrets are configured in the repository settings before running workflows.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -97,12 +98,12 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 
 <!-- AI:start:contributors -->
 [@carlosdem](https://github.com/carlosdem) - 52 commits  
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 24 commits  
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 26 commits  
 [@er-vin](https://github.com/er-vin) - 18 commits  
 [@DaSpood](https://github.com/DaSpood) - 2 commits  
 [@bport](https://github.com/bport) - 1 commit  
 
-*Note: This repository may be a mirror. Please refer to the upstream source for additional context.*
+*Note: This repository may be a mirror. Please check the upstream source for additional details.*
 <!-- AI:end:contributors -->
 
 ## Origins
