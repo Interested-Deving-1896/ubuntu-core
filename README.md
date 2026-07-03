@@ -4,19 +4,23 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/ubuntu-core)
 
 <!-- AI:start:what-it-does -->
-This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It provides tools to generate signed and unsigned image files, tar archives, and ISO installers, facilitating the deployment of customized operating system builds. It is used by developers and system integrators working with KDE Neon and Ubuntu Core.
+This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It provides tools to generate signed and "dangerous" images, tarballs, and ISO files for deployment. Developers and system integrators use it to streamline the process of building and packaging customized operating system images.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for generating "dangerous" and "signed" images, as well as their corresponding ISO files. The process involves creating model assertion files, signing them, generating snap lists, building images, and optionally compressing or packaging them into ISOs. Scripts like `finalize-json.sh` and `create-snap-list.sh` handle intermediate steps. The `ubuntu-image` tool is used for image creation.
+The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for "dangerous" and "signed" images, generating `.tar.gz`, `.iso`, and `.img` files. The process involves signing JSON model files, creating snap lists, and assembling images using `ubuntu-image`. Scripts like `finalize-json.sh` and `create-snap-list.sh` assist in preparing inputs for the build.
 
-The directory structure is as follows:
+Key components:
+- **Makefile**: Defines build rules and dependencies.
+- **Scripts**: Automate JSON finalization, snap list creation, and ISO generation.
+- **Image Directory**: Contains YAML templates for image configuration.
+- **JSON Files**: Define image models and configurations.
 
+Directory structure:
 ```plaintext
 .
-├── .gitignore
 ├── Makefile
 ├── README.md
 ├── create-snap-list.sh
@@ -30,13 +34,6 @@ The directory structure is as follows:
 ├── local-snaps/
 └── run-image.sh
 ```
-
-Key components:
-- **Makefile**: Defines build targets and dependencies.
-- **Scripts**: Automate JSON finalization, snap list creation, and ISO generation.
-- **`ubuntu-image`**: Used for building images from model assertions and snap lists.
-- **`image/`**: Contains configuration templates for image creation.
-- **`local-snaps/`**: Stores local snap packages for inclusion in the images.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -62,22 +59,20 @@ cd ubuntu-core
 The repository uses GitHub Actions for continuous integration. The following workflows are defined:
 
 1. **`build.yml`**:  
-   - Triggers on pushes and pull requests to the `main` branch.  
-   - Executes the `Makefile` targets to build `dangerous` and `signed` artifacts.  
-   - Artifacts include `.tar.gz` and `.iso` files for both dangerous and signed builds.  
-   - No secrets required.
+   - Triggers on push and pull request events.  
+   - Runs the `Makefile` targets to build `dangerous` and `signed` artifacts.  
+   - Validates the build process and ensures no errors in the generated files.  
 
-2. **`release.yml`**:  
-   - Triggers on creating a new Git tag.  
-   - Builds release artifacts using the `Makefile` and uploads them as release assets.  
-   - Requires the `GITHUB_TOKEN` secret for authentication.
+2. **`lint.yml`**:  
+   - Triggers on push and pull request events.  
+   - Lints all shell scripts in the repository using `shellcheck`.  
+   - Ensures code quality and adherence to shell scripting best practices.  
 
-3. **`lint.yml`**:  
-   - Triggers on pushes and pull requests.  
-   - Runs shell script linters (e.g., `shellcheck`) on all `.sh` files in the repository.  
-   - No secrets required.  
+### Required Secrets
+- `KDE_SNAPCRAFT_KEY`: Used for signing `.model` files during the build process.  
+- `KDE_NEON_CORE_IMAGE_KEY`: Used for signing additional `.model` files.  
 
-Ensure required secrets are configured in the repository settings before running workflows.
+Ensure these secrets are configured in the repository settings for workflows to execute successfully.
 <!-- AI:end:ci -->
 
 ## Mirror chain
@@ -98,12 +93,12 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 
 <!-- AI:start:contributors -->
 [@carlosdem](https://github.com/carlosdem) - 52 commits  
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 26 commits  
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 27 commits  
 [@er-vin](https://github.com/er-vin) - 18 commits  
 [@DaSpood](https://github.com/DaSpood) - 2 commits  
 [@bport](https://github.com/bport) - 1 commit  
 
-*Note: This repository may be a mirror. Please check the upstream source for additional details.*
+*Note: This repository may be a mirror. Please refer to the upstream source for additional context.*
 <!-- AI:end:contributors -->
 
 ## Origins
