@@ -4,23 +4,19 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/ubuntu-core)
 
 <!-- AI:start:what-it-does -->
-This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It provides tools to generate signed and "dangerous" images, tarballs, and ISO files for deployment. Developers and system integrators use it to streamline the process of building and packaging customized operating system images.
+This project provides tooling and scripts to build customized Ubuntu Core images tailored for KDE Neon environments. It automates the creation of signed and "dangerous" images, tarballs, and ISO files, enabling developers and system integrators to generate and distribute specific configurations of Ubuntu Core for their use cases.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for "dangerous" and "signed" images, generating `.tar.gz`, `.iso`, and `.img` files. The process involves signing JSON model files, creating snap lists, and assembling images using `ubuntu-image`. Scripts like `finalize-json.sh` and `create-snap-list.sh` assist in preparing inputs for the build.
+The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for "dangerous" and "signed" images, supporting both `.tar.gz` and `.iso` formats. The build process involves generating model files, signing them, creating snap lists, and assembling images using `ubuntu-image`. The `create-snap-list.sh` and `finalize-json.sh` scripts assist in preparing the necessary files. The `create_iso.sh` script generates ISO images from installer images.
 
-Key components:
-- **Makefile**: Defines build rules and dependencies.
-- **Scripts**: Automate JSON finalization, snap list creation, and ISO generation.
-- **Image Directory**: Contains YAML templates for image configuration.
-- **JSON Files**: Define image models and configurations.
+The directory structure is as follows:
 
-Directory structure:
 ```plaintext
 .
+├── .gitignore
 ├── Makefile
 ├── README.md
 ├── create-snap-list.sh
@@ -32,8 +28,10 @@ Directory structure:
 │   ├── install-sources.yaml.in
 ├── kde-neon-core-amd64.json
 ├── local-snaps/
-└── run-image.sh
-```
+├── run-image.sh
+``` 
+
+Key components interact through the `Makefile`, which orchestrates the build pipeline. Scripts and configuration files in the repository are used to customize and finalize the image creation process.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -59,20 +57,21 @@ cd ubuntu-core
 The repository uses GitHub Actions for continuous integration. The following workflows are defined:
 
 1. **`build.yml`**:  
-   - Triggers on push and pull request events.  
-   - Runs the `Makefile` targets to build `dangerous` and `signed` artifacts.  
-   - Validates the build process and ensures no errors in the generated files.  
+   - Triggers on pushes and pull requests to the `main` branch.  
+   - Runs the `Makefile` targets `dangerous` and `signed` to build the project artifacts.  
+   - No secrets required.
 
-2. **`lint.yml`**:  
-   - Triggers on push and pull request events.  
-   - Lints all shell scripts in the repository using `shellcheck`.  
-   - Ensures code quality and adherence to shell scripting best practices.  
+2. **`release.yml`**:  
+   - Triggers on creating a new Git tag.  
+   - Builds the `signed` artifacts and uploads them as release assets.  
+   - Requires the `GITHUB_TOKEN` secret (provided by default in GitHub Actions).
 
-### Required Secrets
-- `KDE_SNAPCRAFT_KEY`: Used for signing `.model` files during the build process.  
-- `KDE_NEON_CORE_IMAGE_KEY`: Used for signing additional `.model` files.  
+3. **`lint.yml`**:  
+   - Triggers on pushes and pull requests.  
+   - Runs shell script linting using `shellcheck` on all `.sh` files.  
+   - No secrets required.  
 
-Ensure these secrets are configured in the repository settings for workflows to execute successfully.
+Ensure the repository has the necessary permissions and secrets configured for workflows to execute successfully.
 <!-- AI:end:ci -->
 
 ## Mirror chain
