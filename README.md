@@ -4,7 +4,7 @@
 [![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/ubuntu-core)
 
 <!-- AI:start:what-it-does -->
-This project provides tooling and scripts to build customized Ubuntu Core images tailored for KDE Neon environments. It automates the creation of signed and "dangerous" images, tarballs, and ISO files, enabling developers and system integrators to generate and distribute specific configurations of Ubuntu Core for their use cases.
+This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It provides scripts and Makefile targets to generate signed and "dangerous" images, tarballs, and ISO files, enabling developers to build and distribute customized system images. It is used by developers working on KDE Neon or related infrastructure projects requiring reproducible image builds.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
