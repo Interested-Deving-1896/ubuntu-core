@@ -56,22 +56,20 @@ cd ubuntu-core
 <!-- AI:start:ci -->
 The repository uses GitHub Actions for continuous integration. The following workflows are defined:
 
-1. **`build.yml`**:  
-   - Triggers on pushes and pull requests to the `main` branch.  
-   - Runs the `Makefile` targets `dangerous` and `signed` to build the project artifacts.  
-   - No secrets required.
+1. **`build.yml`**  
+   - Triggers: On push and pull request events to the `main` branch.  
+   - Tasks: Executes the `Makefile` targets to build `dangerous` and `signed` artifacts.  
+   - Required Secrets: None.
 
-2. **`release.yml`**:  
-   - Triggers on creating a new Git tag.  
-   - Builds the `signed` artifacts and uploads them as release assets.  
-   - Requires the `GITHUB_TOKEN` secret (provided by default in GitHub Actions).
+2. **`release.yml`**  
+   - Triggers: On creating a new GitHub release.  
+   - Tasks: Builds release artifacts (`.tar.gz` and `.iso` files) and uploads them as release assets.  
+   - Required Secrets: `GPG_PRIVATE_KEY` (for signing), `GPG_PASSPHRASE`.
 
-3. **`lint.yml`**:  
-   - Triggers on pushes and pull requests.  
-   - Runs shell script linting using `shellcheck` on all `.sh` files.  
-   - No secrets required.  
-
-Ensure the repository has the necessary permissions and secrets configured for workflows to execute successfully.
+3. **`lint.yml`**  
+   - Triggers: On push and pull request events.  
+   - Tasks: Runs shell script linters (e.g., `shellcheck`) on all `.sh` files in the repository.  
+   - Required Secrets: None.
 <!-- AI:end:ci -->
 
 ## Mirror chain
