@@ -5,15 +5,13 @@
 
 
 <!-- AI:start:what-it-does -->
-This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It provides scripts and Makefile targets to generate signed and "dangerous" images, tarballs, and ISO files, enabling developers to build and distribute customized system images. It is used by developers working on KDE Neon or related infrastructure projects requiring reproducible image builds.
+This project automates the creation of Ubuntu-based core images tailored for KDE Neon environments. It provides tools for generating signed and "dangerous" images, ISO files, and installer artifacts, enabling developers to build and distribute customized system images. It is primarily used by contributors and maintainers of KDE Neon for system image generation and testing.
 <!-- AI:end:what-it-does -->
 
 ## Architecture
 
 <!-- AI:start:architecture -->
-The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define build targets for "dangerous" and "signed" images, supporting both `.tar.gz` and `.iso` formats. The build process involves generating model files, signing them, creating snap lists, and assembling images using `ubuntu-image`. The `create-snap-list.sh` and `finalize-json.sh` scripts assist in preparing the necessary files. The `create_iso.sh` script generates ISO images from installer images.
-
-The directory structure is as follows:
+The project builds Ubuntu Core images tailored for KDE Neon. It uses a `Makefile` to define targets for creating "dangerous" and "signed" images, both as `.tar.gz` archives and `.iso` files. Key components include JSON model files, snap lists, and scripts for finalizing configurations, signing models, and generating images. The `ubuntu-image` tool is used to assemble the images, and additional scripts handle ISO creation and snap list generation. The directory structure is as follows:
 
 ```plaintext
 .
@@ -32,7 +30,7 @@ The directory structure is as follows:
 ├── run-image.sh
 ```
 
-Key components interact through the `Makefile`, which orchestrates the build pipeline. Scripts and configuration files in the repository are used to customize and finalize the image creation process.
+Scripts and configuration files interact to produce signed or unsigned images, with intermediate artifacts like `.model` and `.snap-list` files. Cleaning up temporary files is handled by the `clean` target in the `Makefile`.
 <!-- AI:end:architecture -->
 
 ## Install
@@ -90,11 +88,11 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-[@carlosdem](https://github.com/carlosdem) - 52 commits
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 28 commits
-[@er-vin](https://github.com/er-vin) - 18 commits
-[@DaSpood](https://github.com/DaSpood) - 2 commits
-[@bport](https://github.com/bport) - 1 commit
+[@carlosdem](https://github.com/carlosdem) - 52 commits  
+[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 35 commits  
+[@er-vin](https://github.com/er-vin) - 18 commits  
+[@DaSpood](https://github.com/DaSpood) - 2 commits  
+[@bport](https://github.com/bport) - 1 commit  
 
 *Note: This repository may be a mirror. Please check the upstream source for additional context.*
 <!-- AI:end:contributors -->
