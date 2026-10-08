@@ -91,8 +91,8 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 <!-- AI:start:contributors -->
 | Contributor | Commits |
 |---|---|
+| [@Interested-Deving-1896](https://github.com/Interested-Deving-1896) | 58 |
 | [@carlosdem](https://github.com/carlosdem) | 52 |
-| [@Interested-Deving-1896](https://github.com/Interested-Deving-1896) | 40 |
 | [@er-vin](https://github.com/er-vin) | 18 |
 | [@DaSpood](https://github.com/DaSpood) | 2 |
 | [@bport](https://github.com/bport) | 1 |
@@ -130,5 +130,5 @@ for the underlying accessibility reference.
 ## License
 
 <!-- AI:start:license -->
-<!-- License not detected — add a LICENSE file to this repo. -->
+[GPL-3.0](https://github.com/Interested-Deving-1896/ubuntu-core/blob/Neon/ci_build_iso/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
 <!-- AI:end:license -->
