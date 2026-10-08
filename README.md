@@ -89,13 +89,13 @@ Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-
 ## Contributors
 
 <!-- AI:start:contributors -->
-[@carlosdem](https://github.com/carlosdem) - 52 commits
-[@Interested-Deving-1896](https://github.com/Interested-Deving-1896) - 35 commits
-[@er-vin](https://github.com/er-vin) - 18 commits
-[@DaSpood](https://github.com/DaSpood) - 2 commits
-[@bport](https://github.com/bport) - 1 commit
-
-*Note: This repository may be a mirror. Please check the upstream source for additional context.*
+| Contributor | Commits |
+|---|---|
+| [@carlosdem](https://github.com/carlosdem) | 52 |
+| [@Interested-Deving-1896](https://github.com/Interested-Deving-1896) | 40 |
+| [@er-vin](https://github.com/er-vin) | 18 |
+| [@DaSpood](https://github.com/DaSpood) | 2 |
+| [@bport](https://github.com/bport) | 1 |
 <!-- AI:end:contributors -->
 
 ## Origins
